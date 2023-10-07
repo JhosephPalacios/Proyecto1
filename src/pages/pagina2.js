@@ -4,7 +4,7 @@ const Index2  = () => {
     return (
     <div>
         <h1>Pagina 2</h1>
-        <Link href="imagen">Ver imagen</Link>
+        <Link href="imagen">Verd s ds imagen</Link>
     </div>
     )
 }
