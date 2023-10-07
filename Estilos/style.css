@@ -75,9 +75,9 @@ form .insertar{
 }
 
 .recordar{
-    margin: 10px 0 20px 5px;
     color: blue;
     cursor: pointer;
+    margin-top: 20px;
 }
 
 .recordar:hover{
@@ -93,7 +93,8 @@ input[type = "submit"]{
     font-size: 18px;
     color: white;
     cursor: pointer;
-    outline: none;   
+    outline: none; 
+    margin-top: 15px;
 }
 
 input[type = "submit"]:hover{
