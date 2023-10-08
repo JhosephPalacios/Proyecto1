@@ -29,9 +29,9 @@ enlacesColumna.style.borderRight = '1px solid #000';
 
 // Datos de los enlaces
 const enlaces = [
-  { texto: 'Enlace 1', archivo: 'Inicio.js' },
-  { texto: 'Enlace 2', archivo: 'Perfil.js' },
-  { texto: 'Enlace 3', archivo: 'Bibliotecas.js' }
+  { texto: 'Inicio', archivo: 'Inicio.js' },
+  { texto: 'Perfil', archivo: 'Perfil.js' },
+  { texto: 'Bibliotecas', archivo: 'Bibliotecas.js' }
 ];
 
 // Crear y agregar los enlaces a la columna
