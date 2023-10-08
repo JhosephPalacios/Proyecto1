@@ -61,6 +61,8 @@ function cargarScript(archivo) {
   document.body.appendChild(script);
 }
 
+
+/*
 // Crear el elemento de título
 const tituloadm = document.createElement('div');
 tituloadm.id = 'titulo';
@@ -69,6 +71,6 @@ tituloadm.textContent = 'Bienvenido, Juan!';
 // Agregar el título al cuerpo del documento
 document.body.appendChild(tituloadm);
 
-
+*/
 
 export default inicioadm
