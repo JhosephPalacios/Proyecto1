@@ -7,7 +7,7 @@ const Index  = () => {
         <h1>Home</h1>
         <Link href="pagina2">Ir a la pagina2</Link>
         <Link href="modificar_p_al">MI PRUEBA GIT</Link>
-        <Link href="inicioadm">Inicio Adm</Link>
+        <Link href="inicioadm">Adm</Link>
     </div>
     )
 }
