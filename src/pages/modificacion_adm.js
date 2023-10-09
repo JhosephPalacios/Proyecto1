@@ -14,7 +14,7 @@ const Registro = () => {
             </head>
             <header>
                 <div className="header">
-                    <h2>Hola, XXXXXX</h2>
+                    <h2>Hola, XXXXX</h2>
                 </div>
             </header>
 
