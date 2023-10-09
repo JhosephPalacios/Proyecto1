@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/lousuario.css'; 
+import '../styles/princiadmin.css';
 
 function App() {
   const user = "NombreDelUsuario"; // Reemplaza esto con el nombre de usuario real
@@ -27,6 +27,9 @@ function App() {
           <div className="box">
             <div className="text-box">
               <p>Últimas reservas</p>
+            </div>
+            <div className="ver-todo">
+              Ver Todo
             </div>
             <div className="new-box"></div>
             <div className="new-box2"></div>

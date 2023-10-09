@@ -22,7 +22,9 @@ body {
     outline: none;
     text-align: left;
     border-radius: 0;
-    color: #6750A4 !important; 
+    color: #000; /* Cambia el color del texto a negro */
+    max-width: 75%; /* Establece un ancho máximo para evitar que se extienda más allá del marco */
+    overflow-x: auto; /* Agrega una barra de desplazamiento horizontal cuando el contenido se desborda */
 }
   main {
     width: 80%;
