@@ -8,18 +8,18 @@ function App() {
     const menuIcon = document.getElementById('menuIcon');
     const sidebar = document.getElementById('sidebar');
 
-    menuIcon.addEventListener('click', function () {
-      sidebar.classList.toggle('active');
-    });
+    if (menuIcon && sidebar) {
+      menuIcon.addEventListener('click', function () {
+        sidebar.classList.toggle('active');
+      });
+    }
   }, []);
-  
   return (
     <div>
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Mi Página</title>
-        <link rel="stylesheet" href="styles.css" />
       </head>
       <body>
         <div className="header">
@@ -60,6 +60,7 @@ function App() {
                 <img src="portada.png" alt="Imagen" className="image" />
               </div>
             </div>
+            
             <div className="box box2">
               <div className="text-box">
                 <p>Los más pedidos</p>
@@ -79,7 +80,6 @@ function App() {
             </div>
           </div>
         </div>
-        <script src="script.js"></script>
       </body>
     </div>
   );
