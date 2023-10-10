@@ -1,8 +1,18 @@
 import React from 'react';
 import Head from 'next/head';
-import '../styles/login.css'; // Importa los estilos CSS
+import Link from 'next/link';
+import { useRouter } from 'next/router'; // Importa useRouter para navegar a la página
+
+import '../styles/login.css';
 
 const Index = () => {
+    const router = useRouter();
+
+    const handleRegistroClick = () => {
+        // Navegar a la página "registro.js"
+        router.push('/registro');
+    };
+
     return (
         <div className="container">
             <Head>
@@ -21,7 +31,7 @@ const Index = () => {
                 <a href="#">Olvidé mi contraseña</a>
             </div>
             <div className="button-container">
-                <a href="#" className="register-link">Registro de Usuario</a>
+                <a className="register-link" onClick={handleRegistroClick}>Registro de Usuario</a>
                 <button className="login-button">Ingresar</button>
             </div>
         </div>
