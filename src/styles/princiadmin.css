@@ -1,0 +1,200 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header {
+    background: #F3EDF7;
+    width: 100%;
+    height: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; /* Fijar el encabezado en la parte superior */
+    top: 0; /* Anclar en la parte superior */
+    left: 0; /* Anclar en el lado izquierdo */
+    z-index: 999; /* Colocar en la parte superior */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+.imagen2 {
+    width: 30px;
+    height: 30px;
+    margin-left: 40px; /* Cambia el valor del margen izquierdo según tus preferencias */
+}
+.imagen {
+    width: 50px;
+    height: 45px;
+    margin-left: 40px; /* Cambia el valor del margen izquierdo según tus preferencias */
+}
+.container {
+    display: flex;
+    margin-top: 64px; /* Añadir un margen superior igual a la altura del encabezado */
+    flex-grow: 1; /* Hacer que el contenedor principal ocupe todo el alto disponible */
+}
+
+
+.sidebar {
+    width: 0; /* Oculta la barra lateral inicialmente */
+    overflow: hidden;
+    transition: width 0.3s ease;
+    background: #D9D9D9;
+}
+
+.sidebar.active {
+    width: 250px; /* Ancho deseado cuando se activa */
+}
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    margin-top: 25px;
+    font-size: 18px;
+    margin-bottom: 60px;
+    font-weight: bold;
+    color: #6750A4;
+    cursor: pointer;
+}
+.inner-box {
+    width: 600px;
+    height: 162px;
+    background-color: #CAC4D0;
+    position: absolute;
+    left: 950px;
+    bottom: 103px;
+    border: 0px solid;
+    border-radius: 20px;
+}
+.new-box {
+    width: 590px;
+    height: 150px;
+    background-color: white;
+    position: absolute; /* Establece posición absoluta */
+    top: 90px; /* Ajusta la posición vertical para superponerse a .inner-box */
+    left: 84px; /* Ajusta la posición horizontal para superponerse a .inner-box */
+    z-index: 1; /* Asegura que .new-box esté encima de otros elementos */
+    border: 1px solid #CAC4D0;
+    border-radius: 15px;
+}
+.new-box2 {
+    width: 590px;
+    height: 150px;
+    background-color: white;
+    position: absolute; /* Establece posición absoluta */
+    top: 90px; /* Ajusta la posición vertical para superponerse a .inner-box */
+    left: 954px; /* Ajusta la posición horizontal para superponerse a .inner-box */
+    z-index: 1; /* Asegura que .new-box esté encima de otros elementos */
+    border: 1px solid #CAC4D0;
+    border-radius: 15px;
+}
+.new-box p{
+    left: 10px;
+}
+.inner-box2 {
+    width: 600px;
+    height: 162px;
+    background-color: #CAC4D0;
+    position: absolute; /* Establece posición absoluta */
+    left: 80px; /* Mueve horizontalmente hacia la izquierda */
+    top: 85px; /* Ajusta la posición vertical según sea necesario */
+    border: 0px solid;
+    border-radius: 20px;
+}
+.menu p{
+    font-size: 12px;
+    font-weight: bold;
+}
+.box {
+    width: 1650px;
+    height: 350px;
+    background-color: #F3EDF7;
+    margin-top: 40px; /* Espacio entre los cuadros */
+    margin-bottom: 30px; /* Espacio entre los cuadros y el siguiente elemento */
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Establece posición relativa */
+}
+.ver-todo {
+    display: flex;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    padding-top: 280px;
+    margin: -40px; /* Añade un margen alrededor del elemento */
+}
+
+.box p {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+    white-space: nowrap;
+    padding-right: 1325px;
+    padding-bottom: 250px;
+}
+.menu li:last-child {
+    margin-bottom: 20px;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 30px;
+}
+
+.welcome {
+    font-size: 24px;
+    margin-bottom: 25px;
+    font-weight: bold;
+    color: black; /* Color del texto para "Bienvenido Juan!" */
+}
+
+.divider {
+    height: 2px;
+    background: #ccc;
+    width: 100%;
+    margin: 10px 0;
+}
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Cambia a flexbox para alinear horizontalmente */
+    flex-direction: column; /* Alinea verticalmente */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+}
+
+.menu li {
+    margin-top: 25px;
+    font-size: 18px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    color: #6750A4;
+    cursor: pointer;
+    text-align: center; /* Alinea el texto en el centro */
+}
+.sidebar p {
+    margin-top: 635px; /* Mueve el párrafo hacia la parte inferior */
+    margin-bottom: 0; /* Elimina el margen inferior */
+    font-size: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+    text-align: center; /* Alinea el texto en el centro */
+    flex-grow: 1; /* Ocupa el espacio vertical disponible */
+    display: flex; /* Usar flexbox */
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra verticalmente */
+}
