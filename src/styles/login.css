@@ -95,4 +95,5 @@ body {
     text-decoration: none;
     display: inline-block;
     margin-top: 10px;
+    cursor: pointer;
 }

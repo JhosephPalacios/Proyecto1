@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import '../styles/registro.css'; // Importa los estilos CSS
+import '../styles/registro.css';
 
 const Registro = () => {
     return (

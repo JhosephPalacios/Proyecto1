@@ -134,7 +134,7 @@ body {
     font-size: 24px;
     margin-bottom: 25px;
     font-weight: bold;
-    color: black; /* Color del texto para "Bienvenido Juan!" */
+    color: #black; /* Color del texto para "Bienvenido Juan!" */
 }
 
 .divider {
@@ -147,7 +147,7 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
-    text-align: 0;
+    text-align: ;
     display: flex; /* Cambia a flexbox para alinear horizontalmente */
     flex-direction: column; /* Alinea verticalmente */
     justify-content: right; /* Centra el contenido horizontalmente */
@@ -165,7 +165,7 @@ body {
     text-align: left; /* Alinea el texto en el centro */
 }
 .sidebar p {
-    margin-top: 630px; /* Mueve el párrafo hacia la parte inferior */
+    margin-top: 635px; /* Mueve el párrafo hacia la parte inferior */
     margin-bottom: 0; /* Elimina el margen inferior */
     font-size: 12px;
     font-weight: bold;
@@ -346,3 +346,4 @@ body {
     border: 2px solid #CAC4D0;
     border-radius: 15px;
 }
+

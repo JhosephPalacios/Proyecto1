@@ -1,86 +1,85 @@
 import React, { useEffect } from 'react';
-import '../styles/princialumn.css'; // Asegúrate de importar tu hoja de estilos
-function App() {
-  const user = 'NombreDeUsuario'; // Debes definir el nombre de usuario
+import '../styles/princialumn.css'; // Importa tu archivo CSS aquí
 
+function MyPage() {
+  const user = "TuNombreDeUsuario"; // Reemplaza "TuNombreDeUsuario" con el valor adecuado
   useEffect(() => {
     const menuIcon = document.getElementById('menuIcon');
     const sidebar = document.getElementById('sidebar');
 
-    if (menuIcon && sidebar) {
-      menuIcon.addEventListener('click', function () {
+    if (menuIcon) {
+      menuIcon.addEventListener('click', () => {
         sidebar.classList.toggle('active');
       });
+
+      // Limpieza del evento al desmontar el componente
+      return () => {
+        menuIcon.removeEventListener('click', () => {
+          sidebar.classList.toggle('active');
+        });
+      };
     }
   }, []);
 
   return (
     <div>
-      <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Mi Página</title>
-        <link rel="stylesheet" href="pagiusu.css" />
-      </head>
-      <body>
-        <div className="header">
-          <div className="logo" id="menuIcon">
-            <img src="menu.png" alt="Icono Izquierdo" className="imagen2" />
-          </div>
-          <img src="usuario.png" alt="Icono Derecho" className="imagen" />
+      <div className="header">
+        <div className="logo" id="menuIcon">
+          <img src="menu.png" alt="Icono Izquierdo" className="imagen2" />
         </div>
-        <div className="container">
-          <div className="sidebar" id="sidebar">
-            <ul className="menu">
-              <li>Principal</li>
-              <li>Perfil</li>
-              <li>Préstamos</li>
-            </ul>
-            <p>SAC v1.0.1-alpha</p>
-          </div>
-          <div className="content">
-            <div className="welcome">Bienvenido, {user}</div>
-            <div className="divider"></div>
-            <div className="box box1">
-              <div className="text-box">
-                <p>Últimas reservas</p>
-              </div>
-              <div className="new-box">
-                <div className="circle"></div>
-                <div className="text">"Clean Code: A Handbook of Agile Software Craftsmanship"</div>
-                <div className="text2">18/09/2023 08:00 am</div>
-                <img src="portada.png" alt="Imagen" className="image" />
-              </div>
-              <div className="new-box3">
-                <div className="circle"></div>
-                <div className="text"></div>
-                <div className="text2">18/09/2023 08:00 am</div>
-                <img src="portada.png" alt="Imagen" className="image" />
-              </div>
+        <img src="usuario.png" alt="Icono Derecho" className="imagen" />
+      </div>
+      <div className="container">
+        <div className="sidebar" id="sidebar">
+          <ul className="menu">
+            <li>Principal</li>
+            <li>Perfil</li>
+            <li>Préstamos</li>
+          </ul>
+          <p>SAC v1.0.1-alpha</p>
+        </div>
+        <div className="content">
+          <div className="welcome">Bienvenido, {user}</div>
+          <div className="divider"></div>
+          <div className="box box1">
+            <div className="text-box">
+              <p>Últimas reservas</p>
             </div>
-            
-            <div className="box box2">
-              <div className="text-box">
-                <p>Los más pedidos</p>
-              </div>
-              <div className="new-box4">
-                <div className="circle"></div>
-                <div className="text">"Clean Code: A Handbook of Agile Software Craftsmanship"</div>
-                <div className="text2">18/09/2023 08:00 am</div>
-                <img src="portada.png" alt="Imagen" className="image" />
-              </div>
-              <div className="new-box2">
-                <div className="circle"></div>
-                <div className="text"></div>
-                <div className="text2">18/09/2023 08:00 am</div>
-                <img src="portada.png" alt="Imagen" className="image" />
-              </div>
+            <div className="new-box">
+              <div className="circle"></div> {/* Círculo a la izquierda */}
+              <div className="text">"Clean Code: A Handbook of Agile Software Craftsmanship"</div>
+              <div className="text2">18/09/2023 08:00 am</div>
+              <img src="portada.png" alt="Imagen" className="image" /> {/* Imagen al final */}
+            </div>
+            <div className="new-box3">
+              <div className="circle"></div> {/* Círculo a la izquierda */}
+              <div className="text"></div>
+              <div className="text2">18/09/2023 08:00 am</div>
+              <img src="portada.png" alt="Imagen" className="image" /> {/* Imagen al final */}
+            </div>
+          </div>
+          
+          <div className="box box2">
+            <div className="text-box">
+              <p>Los más pedidos</p>
+            </div>
+            <div className="new-box4">
+              <div className="circle"></div> {/* Círculo a la izquierda */}
+              <div className="text">"Clean Code: A Handbook of Agile Software Craftsmanship"</div>
+              <div className="text2">18/09/2023 08:00 am</div>
+              <img src="portada.png" alt="Imagen" className="image" /> {/* Imagen al final */}
+            </div>
+            <div className="new-box2">
+              <div className="circle"></div> {/* Círculo a la izquierda */}
+              <div className="text"></div>
+              <div className="text2">18/09/2023 08:00 am</div>
+              <img src="portada.png" alt="Imagen" className="image" /> {/* Imagen al final */}
             </div>
           </div>
         </div>
-      </body>
+      </div>
     </div>
   );
 }
 
-export default App;
+export default MyPage;
