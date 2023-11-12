@@ -14,7 +14,8 @@
     "multer": "^1.4.5-lts.1",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "run": "^1.4.0"
   },
   "devDependencies": {
     "@types/node": "20.7.1",
