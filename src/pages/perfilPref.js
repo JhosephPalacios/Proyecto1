@@ -13,31 +13,27 @@ const Perfil = () => {
     function registrarCambio(e){
         cuenta_modificada[e.target.name] = e.target.value
     }
-    
-    const escribirJSON = async () =>{
-        const params = JSON.stringify(cuenta_modificada)
+
+    const escribirEnBD = async () => {
         try {
-            const peticion = await fetch (
-                '/api/cuentas/modificar',
-                {
-                    method : 'POST',
-                    body : params,
-                    headers : {
-                        'Content-Type' : 'application/json'
-                    }
-                }
-            )
-            const data = await peticion.json()
+            const peticion = await fetch(`/api/personas/modificar2?id=${cuenta.id}`, {
+                method: 'PUT',  // o 'POST' dependiendo de tu API
+                body: JSON.stringify(cuenta_modificada),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
             setCuenta(cuenta_modificada)
             document.querySelector(':root').style.setProperty('--color-primario', cuenta_modificada.color)
             document.querySelector(':root').style.setProperty('--color-secundario', newShade(cuenta_modificada.color, 100))
-            alert("Datos actualizados")
-
+            alert("Datos actualizados correctamente.")
+            
         } catch (err) {
-            console.log(err)
+            console.error(err);
+            alert("Error al modificar la persona.");
         }
-  
-    }
+    };
+
 
     return (
 
@@ -78,7 +74,7 @@ const Perfil = () => {
                                 <p>Idioma</p>
                             </div>
                             <div id="input_text_idioma">
-                                <input type='text' placeholder='Ingrese idioma' id="inputIdioma" name="idioma" defaultValue={cuenta.idioma} onChange={registrarCambio}/>
+                                <input type='text' placeholder='Ingrese idioma' id="inputIdioma" name="idioma" defaultValue={cuenta.idioma} onBlur={registrarCambio}/>
                             </div>
                         </div>
                     </div>
@@ -96,7 +92,7 @@ const Perfil = () => {
                                 <p>Prefijo</p>
                             </div>
                             <div id="input_text_prefijo">
-                                <input type='text' placeholder='Ingrese prefijo' id="inputPrefijo" name="prefijo" defaultValue={cuenta.prefijo} onChange={registrarCambio}/>
+                                <input type='text' placeholder='Ingrese prefijo' id="inputPrefijo" name="prefijo" defaultValue={cuenta.prefijo} onBlur={registrarCambio}/>
                             </div>
                         </div>
                     </div>
@@ -114,7 +110,7 @@ const Perfil = () => {
                                 <p>Color</p>
                             </div>
                             <div id="input_text_color">
-                                <input type='color' id="inputColor" name="color" defaultValue={cuenta.color} onChange={registrarCambio}/>
+                                <input type='color' id="inputColor" name="color" defaultValue={cuenta.color} onBlur={registrarCambio}/>
                             </div>
                         </div>
                     </div>
@@ -125,7 +121,7 @@ const Perfil = () => {
             </div>
 
 
-            <button type="button" class="guardar" onClick={escribirJSON}>Guardar</button>
+            <button type="button" class="guardar" onClick={escribirEnBD}>Guardar</button>
 
             </div>
             {/* Aquí termina la columna*/}

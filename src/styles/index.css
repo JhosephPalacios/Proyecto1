@@ -66,6 +66,7 @@
 }
 
 
+
 #cont-proximos{
     position: relative;
 }
@@ -110,4 +111,17 @@
 #boton_eliminar:hover {
     background-color: var(--color-primario);
     transform: scale(1.05);
+  }
+
+
+#cont-result{
+  position: relative;
+
+}
+
+  #cont-resultados{
+    position: absolute;
+    right: 280px;
+    top: 20px;
+    width: 130px;
   }

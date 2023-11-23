@@ -5,7 +5,9 @@ import {useRouter} from 'next/router'
 
 const registroUsuario = () => {
 
-    // Leer cuentas
+    /*
+    // ANTIGUO Leer cuentas
+    
     const [cuentas, setCuentas] = useState([]);
     async function leer() {
         const opciones = {
@@ -22,12 +24,12 @@ const registroUsuario = () => {
     useEffect(() => {
         leer();
     }, []);
+    */
 
     const router = useRouter()
 
     // Valores por defecto de un nuevo usuario
     const [nuevo, setNuevo] = useState({
-        "id": "",
         "tipo": "user",
         "nombres": "",
         "apellidos": "",
@@ -43,6 +45,7 @@ const registroUsuario = () => {
     }
     
     const escribirJSON = async () =>{
+
         if(document.getElementById("password").value != document.getElementById("nuevaPass").value){
             alert("Las contraseñas no coinciden")
             return
@@ -51,7 +54,7 @@ const registroUsuario = () => {
         const params = JSON.stringify(nuevo)
         try {
             const peticion = await fetch (
-                '/api/cuentas/registrar',
+                '/api/personas/registrar',
                 {
                     method : 'POST',
                     body : params,

@@ -8,23 +8,48 @@ const login = () => {
     const router = useRouter()
     const [cuenta, setCuenta] = useMiProvider()
 
-    const [cuentas, setCuentas] = useState([]);
-    async function leer() {
-        const opciones = {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        };
-        const request = await fetch("/api/cuentas/leer", opciones);
-        const data = await request.json();
-        console.log(data);
-        setCuentas(data);
+    // Credenciales para logearse correctamente
+    const [credenciales, setCredenciales] = useMiProvider(
+        {
+            "correo" : "",
+            "contrasenha" : ""
+        }
+    )
+    function registrarCambio(e){
+        setCredenciales({...credenciales, [e.target.name]:e.target.value})
     }
-    useEffect(() => {
-        leer();
-    }, []);
-    
+
+    async function handleLogin() {
+        // Query buscando correo y contrasenha
+        let params = JSON.stringify(credenciales)
+        const opciones = {
+            method: "POST",
+            body : params,
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        const request = await fetch("/api/personas/validar", opciones);
+        const data = await request.json();
+
+        // Eatablece el estado segun la cuenta ingresada 
+        if(!data) {
+            alert("Datos incorrectos")
+            return;
+        }
+
+        if(data.tipo == "admin"){
+            console.log("administrador")
+            document.querySelector(':root').style.setProperty('--color-primario', data.color)
+            document.querySelector(':root').style.setProperty('--color-secundario', newShade(data.color, 100))
+        }
+        else if(data.tipo == "user"){
+            console.log("usuario")
+        }
+
+        setCuenta(data);
+        router.push('/')
+    }
 
     return(
     <>
@@ -47,7 +72,7 @@ const login = () => {
                                 <p>Usuario o Correo</p>
                             </div>
                             <div id="input_text_usuario">
-                                <input type='text' placeholder='Ingrese usuario o correo' id="inputUsu"/>
+                                <input type='text' placeholder='Ingrese usuario o correo' id="inputUsu" name="correo" onChange={registrarCambio}/>
                             </div>
                         </div>
                     </div>
@@ -64,7 +89,7 @@ const login = () => {
                                 <p>Contraseña</p>
                             </div>
                             <div id="input_text_contraseña">
-                                <input type='password' placeholder='Ingrese contraseña' id="inputContr"/>
+                                <input type='password' placeholder='Ingrese contraseña' id="inputContr" name="contrasenha" onChange={registrarCambio}/>
                             </div>
 
                         </div>
@@ -88,35 +113,7 @@ const login = () => {
                     <Link href="/registroUsuario" class="regis">Registro usuario</Link>
                 </div>
             </div>
-            <button id="bIngre" onClick={
-                ()=>{
-                    let res = Object.entries(cuentas).filter(
-                        (item) => {
-                            console.log(item[1])
-                            return item[1].correo == document.getElementById("inputUsu").value && 
-                            item[1].contrasenha == document.getElementById("inputContr").value}
-                    )
-                    if (res.length == 0) {
-                        alert("Datos incorrectos")
-                        return
-                    }
-                    
-                    // Eatablece el estado segun la cuenta ingresada 
-                    let cuenta = res[0][1]
-                    if(cuenta.tipo == "admin"){
-                        console.log("administrador")
-                        setCuenta(cuenta)
-                        document.querySelector(':root').style.setProperty('--color-primario', cuenta.color)
-                        document.querySelector(':root').style.setProperty('--color-secundario', newShade(cuenta.color, 100))
-                        router.push('/')
-                    }
-                    else if(cuenta.tipo == "user"){
-                        console.log("usuario")
-                        setCuenta(cuenta)
-                        router.push('/')
-                    }
-                }
-            }>Ingresar</button>
+            <button id="bIngre" onClick={handleLogin}>Ingresar</button>
             </div>
             </form>
             
@@ -127,19 +124,6 @@ const login = () => {
 
 
 export default login
-
-function hexToRgbA(hex){
-    var c;
-    if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
-        c= hex.substring(1).split('');
-        if(c.length== 3){
-            c= [c[0], c[0], c[1], c[1], c[2], c[2]];
-        }
-        c= '0x'+c.join('');
-        return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+',.15)';
-    }
-    throw new Error('Bad Hex');
-}
 
 const newShade = (hexColor, magnitude) => {
     hexColor = hexColor.replace(`#`, ``);

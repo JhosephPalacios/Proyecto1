@@ -9,14 +9,15 @@ const Perfil = () => {
     const [cuenta, setCuenta] = useMiProvider()
 
     const [nuevoLibro, setNuevoLibro] = useState({
-        "id": "",
         "titulo": "",
-        "isbn": "",
-        "genero": "",
         "autor": "",
+        "isbn": "",
         "editorial": "",
+        "tipo": "",
+        "topicos": "",
         "descripcion": "",
-        "imagen": ""
+        "imagen": "",
+        "contador" : "0"
     })
 
     function registrarCambio(e){
@@ -126,15 +127,34 @@ const Perfil = () => {
                                     <p></p>
                                 </div>
                             </div>
+
                             <div id="cuadro_texto_color">
                                 <div class="borde_text_field">
                                     <div class="state_layer">
                                         <div class="content_perfil">
                                             <div id="text_perfil">
-                                                <p>Serie, tipo</p>
+                                                <p>Tipo</p>
                                             </div>
                                             <div id="input_text_color">
-                                                <input type='text' id="inputSerie" name="genero" onChange={registrarCambio}/>
+                                                <input type='text' id="inputTipo" name="tipo" onChange={registrarCambio}/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="supporting-text">
+                                    <p></p>
+                                </div>
+                            </div>
+
+                            <div id="cuadro_texto_color">
+                                <div class="borde_text_field">
+                                    <div class="state_layer">
+                                        <div class="content_perfil">
+                                            <div id="text_perfil">
+                                                <p>Topicos</p>
+                                            </div>
+                                            <div id="input_text_color">
+                                                <input type='text' id="inputSerie" name="topicos" onChange={registrarCambio}/>
                                             </div>
                                         </div>
                                     </div>

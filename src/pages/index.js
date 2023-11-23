@@ -162,6 +162,51 @@ const Index = () => {
 
     }
 
+    const llamarRecientes = async () => {
+
+        const peticion = {
+            method: 'GET', 
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+        if(cuenta.tipo == "user"){
+            const request = await fetch(`/api/reservas/ultimas?id=${cuenta.id}&page=${pageMasRecientes}`, peticion);
+            const data = await request.json();   
+            setdatosMasRecientes(data.items)
+            setTotalPages(data.totalPages)
+        }
+        if(cuenta.tipo == "admin"){
+            const request = await fetch(`/api/reservas/ultimasAdmin?id=${cuenta.id}&page=${pageMasRecientes}`, peticion);
+            const data = await request.json();   
+            setdatosMasRecientes(data.items)
+            setTotalPages(data.totalPages)
+        }
+    };
+    useEffect(() => {
+        llamarRecientes()
+    }, [pageMasRecientes])
+
+
+    const llamarProximos = async () => {
+
+        const peticion = {
+            method: 'GET', 
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+        const request = await fetch(`/api/reservas/proximos?id=${cuenta.id}&page=${pageProximo}`, peticion);
+        const data = await request.json();   
+        setDatos2(data.items)
+        setTotalpageProximo(data.totalPages)
+        
+    };
+    useEffect(() => {
+        llamarProximos()
+    }, [pageProximo])
+
+
     const escribirJSONRecientes = async (e) => {
         const params = JSON.stringify(cuenta)
         try {
@@ -196,12 +241,17 @@ const Index = () => {
         await leerRecientes();
     }
     */
-    useEffect(() => {
+    /*useEffect(() => {
         escribirJSON()
         escribirJSONMasPedidos()
         escribirJSONRecientes()
     }, []);
-    
+    */
+    useEffect(() => {
+        llamarProximos()
+        escribirJSONMasPedidos()
+        llamarRecientes()
+    }, []);
 
 
 
@@ -231,32 +281,32 @@ const Index = () => {
                             </div>
                             <br></br>
                             <div class="flex flex-wrap">
-                                {Object.entries(verTodo? datosMasRecientes:datosMasRecientes.slice(0,2)).map((value, index) => {
+                                {Object.entries(datosMasRecientes).map((value, index) => { 
                                     return (
                                         <div>
-                                            <Link href="/libro/[id]" as={"/libro/"+ value[1].libro_id}>
+                                            <Link href="/libro/[id]" as={"/libro/"+ value[1].reservado.id}>
                                                 <div class="libro">
                                                     <div class="grid grid-cols-6 col-span-1">
                                                         <div class="col-start-1 col-span-1">
                                                             <div class="circulo">
-                                                                <p className="inicial">{obtenerInicialesEnMayuscula(value[1].titulo)}</p>
+                                                                <p className="inicial">{obtenerInicialesEnMayuscula(value[1].reservado.titulo)}</p>
                                                             </div>
                                                         </div>
                                                         <div class="col-start-2 col-end-5">
                                                             <div className="contenedorTituloLibro">
                                                                 <div class="line-clamp-2">
-                                                                    <p class="tituloLibro"><b>"{value[1].titulo}"</b></p>
+                                                                    <p class="tituloLibro"><b>"{value[1].reservado.titulo}"</b></p>
                                                                 </div>
                                                             </div>
                                                             <div className="contenedorInfoLibro">
                                                                 <div class="line-clamp-1">
-                                                                    <p className="infoLibro">Reservado el: {value[1].fecha_inicio}</p>
+                                                                    <p className="infoLibro">Reservado el: {new Date(value[1].fecha_inicio).toISOString().split('T')[0]}</p>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-start-6 col-span-1">
                                                             <div class="imagenLibro">
-                                                                <Image src={value[1].imagen} width={80} height={101} alt="libro"></Image>
+                                                                <Image src={value[1].reservado.imagen} width={80} height={101} alt="libro"></Image>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -288,29 +338,29 @@ const Index = () => {
                                     {Object.entries(datosProximo).map((value, index) => {
                                         return (
                                             <div>
-                                                <Link href="/libro/[id]" as={"/libro/" + value[1].libro_id}>
+                                                <Link href="/libro/[id]" as={"/libro/" + value[1].reservado.id}>
                                                     <div class="libro">
                                                         <div class="grid grid-cols-6 col-span-1">
                                                             <div class="col-start-1 col-span-1">
                                                                 <div class="circulo">
-                                                                    <p className="inicial">{obtenerInicialesEnMayuscula(value[1].titulo)}</p>
+                                                                    <p className="inicial">{obtenerInicialesEnMayuscula(value[1].reservado.titulo)}</p>
                                                                 </div>
                                                             </div>
                                                             <div class="col-start-2 col-end-5">
                                                                 <div className="contenedorTituloLibro">
                                                                     <div class="line-clamp-2">
-                                                                        <p class="tituloLibro"><b>"{value[1].titulo}"</b></p>
+                                                                        <p class="tituloLibro"><b>"{value[1].reservado.titulo}"</b></p>
                                                                     </div>
                                                                 </div>
                                                                 <div className="contenedorInfoLibro">
                                                                     <div class="line-clamp-1">
-                                                                        <p className="infoLibro">Fecha de vencimiento: {value[1].fecha_final}</p>
+                                                                        <p className="infoLibro">Fecha de vencimiento: {new Date(value[1].fecha_final).toISOString().split('T')[0]}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-start-6 col-span-1">
                                                                 <div class="imagenLibro">
-                                                                    <Image src={value[1].imagen} width={80} height={101} alt="libro"></Image>
+                                                                    <Image src={value[1].reservado.imagen} width={80} height={101} alt="libro"></Image>
                                                                 </div>
                                                             </div>
                                                         </div>

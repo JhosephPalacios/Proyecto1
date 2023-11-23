@@ -5,77 +5,31 @@ import Layout from './components/Layout.js'
 import { useMiProvider } from './context/contexto.js'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import { useSearchParams } from 'next/navigation';
 
-export default function busqueda() {
+
+export default function Busqueda() {
 
     // Cambiar de acuerdo al tipo de cuenta
     const [cuenta, setCuenta] = useMiProvider()
-    let agrega_recurso = cuenta.tipo == 'admin' ? true : false
 
+    const searchParams = useSearchParams();
     const router = useRouter()
-    var data
 
-    async function leerJsonLibreria() {
-        const opciones = {
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }
-        const request = await fetch('api/libros/leer', opciones)
-        data = await request.json()
-        console.log(data)
-        return data
-    }
-    
-    async function escribirJsonResultados(searchResults) {
-        //localStorage.setItem("searchResults", JSON.stringify(searchResults));
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(searchResults),
-        };
-
-        // Realiza la solicitud POST a la API de escritura de resultados
-        const request = await fetch('/api/busqueda/escribir', requestOptions);
-        data = await request.json()
-        console.log(data)
-
-    }
-
+    // Parametros de busqueda
     const [palabraclave, setPalabraclave] = useState("");
-    const [searchResults, setSearchResults] = useState([]);
     const [tipoRecurso, setTipoRecurso] = useState("");
     const [selectedFilters, setSelectedFilters] = useState([]);
 
+    // Lanzar la busqueda
     const handleSearch = async (e) => {
-        e.preventDefault();
-        console.log(palabraclave)
-        // Inicializa results con la lista completa de libros
-        let results = await leerJsonLibreria();
-        // Quiere decir que si no se ingresa nada en esos cambios no filtrará
-        if (selectedFilters.length === 0 && palabraclave.trim() === "" && tipoRecurso.trim() === "") {
-            // Si no se selecciona ningún campo, no aplicar ningún filtro
-            setSearchResults([]);
-            return;
-        }
-        results = results.filter((book) => {
-            // Verificar si la palabra clave se encuentra en alguno de los campos seleccionados
-            const keywordMatch = selectedFilters.some((filter) =>
-                (book[filter] || "").toLowerCase().includes(palabraclave.toLowerCase())
-            );
-
-            // Verificar si el tipo de recurso coincide
-            const tipoMatch = tipoRecurso.trim() === "" || (book.tipo || "").toLowerCase().includes(tipoRecurso.toLowerCase());
-
-            return keywordMatch && tipoMatch;
-        });
-        // Actualiza el estado de los resultados
-        setSearchResults(results);
-        escribirJsonResultados(results);
-        router.push('/resultados');
+        // escribe en la URL visualmente
+        const params = new URLSearchParams(searchParams);
+        params.set('keyword', palabraclave);
+        params.set('type', tipoRecurso);
+        params.set('filters', selectedFilters);
+        console.log(params.toString())
+        router.push(`/resultados?${params.toString()}`)
     };
 
     // almacenar los filtros de checkbox
@@ -88,7 +42,7 @@ export default function busqueda() {
             // Eliminar el campo seleccionado de la lista de filtros
             setSelectedFilters(selectedFilters.filter((filter) => filter !== value));
         }
-        console.log(selectedFilters)
+        console.log(selectedFilters, "modificando: ", value)
     };
 
     return (
@@ -102,12 +56,12 @@ export default function busqueda() {
                     <div class="bg-white p-6 rounded-md shadow-md w-12/12 h-full">
                         <div class="flex justify-between gap-4 mb-4">
                             <h1 class="text-2xl font-semibold">Búsqueda</h1>
-                            { agrega_recurso && (
+                            { cuenta.tipo == 'admin' && (
                             <Link type="button" href="/agregarLibroAdm" class="px-4 py-2 hover:bg-blue-600 border rounded-full color_fondo_primario color_letra_blanco">Agregar un nuevo recurso</Link>
                             )}
                             </div>
                         <div class=" py-4 px-4 color_fondo_secundario">
-                            <form class="flex" onSubmit={handleSearch}>
+                            <form class="flex" onSubmit={(e)=>{e.preventDefault()}}>
 
                                 <div class="w-1/2 mr-4 space-y-4 m-3 ">
 

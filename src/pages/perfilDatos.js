@@ -14,28 +14,23 @@ const Perfil = () => {
         cuenta_modificada[e.target.name] = e.target.value
     }
     
-    const escribirJSON = async () =>{
-        const params = JSON.stringify(cuenta_modificada)
+    const escribirEnBD = async () => {
         try {
-            const peticion = await fetch (
-                '/api/cuentas/modificar',
-                {
-                    method : 'POST',
-                    body : params,
-                    headers : {
-                        'Content-Type' : 'application/json'
-                    }
-                }
-            )
-            const data = await peticion.json()
+            const peticion = await fetch(`/api/personas/modificar2?id=${cuenta.id}`, {
+                method: 'PUT',  // o 'POST' dependiendo de tu API
+                body: JSON.stringify(cuenta_modificada),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
             setCuenta(cuenta_modificada)
-            alert("Datos actualizados")
-
+            alert("Datos actualizados correctamente.")
+            
         } catch (err) {
-            console.log(err)
+            console.error(err);
+            alert("Error al modificar la persona.");
         }
-  
-    }
+    };
 
     return (
 
@@ -78,7 +73,7 @@ const Perfil = () => {
                                 <p>Nombres</p>
                             </div>
                             <div id="input_text_nombre">
-                                <input type='text' placeholder='Ingrese nombre' id="inputNombre" name="nombres" defaultValue={cuenta.nombres} onChange={registrarCambio}/>
+                                <input type='text' placeholder='Ingrese nombre' id="inputNombre" name="nombres" defaultValue={cuenta.nombres} onBlur={registrarCambio}/>
                             </div>
                         </div>
                     </div>
@@ -96,7 +91,7 @@ const Perfil = () => {
                                 <p>Tipo de Documento</p>
                             </div>
                             <div id="input_text_tipo">
-                                <input type='text' placeholder='Ingrese documento' id="inputTipo" name="tipo_documento" defaultValue={cuenta.tipo_documento} onChange={registrarCambio}/>
+                                <input type='text' placeholder='Ingrese documento' id="inputTipo" name="tipo_documento" defaultValue={cuenta.tipo_documento} onBlur={registrarCambio}/>
                             </div>
                         </div>
                     </div>
@@ -115,7 +110,7 @@ const Perfil = () => {
                                 <p>Apellidos</p>
                             </div>
                             <div id="input_text_ape">
-                                <input type='text' placeholder='Ingrese apellidos' id="inputApe" name="apeliidos" defaultValue={cuenta.apellidos} onChange={registrarCambio} />
+                                <input type='text' placeholder='Ingrese apellidos' id="inputApe" name="apeliidos" defaultValue={cuenta.apellidos} onBlur={registrarCambio} />
                                 </div>
                             </div>
                         </div>
@@ -133,7 +128,7 @@ const Perfil = () => {
                                             <p>Nro de documento</p>
                                         </div>
                                         <div id="input_text_nro">
-                                            <input type='text' placeholder='Ingrese número' id="inputNro" name="nro_documento" defaultValue={cuenta.nro_documento} onChange={registrarCambio}/>
+                                            <input type='text' placeholder='Ingrese número' id="inputNro" name="nro_documento" defaultValue={cuenta.nro_documento} onBlur={registrarCambio}/>
                                         </div>
                                     </div>
                                 </div>
@@ -143,7 +138,7 @@ const Perfil = () => {
                             </div>
                         </div>
 
-                        <button type="button" class="guardar" onClick={escribirJSON}>Guardar</button>
+                        <button type="button" class="guardar" onClick={escribirEnBD}>Guardar</button>
 
                     </div>
                     {/* Aquí termina la columna*/}

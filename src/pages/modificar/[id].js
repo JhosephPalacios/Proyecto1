@@ -5,62 +5,59 @@ import Layout from '../components/Layout'
 import {useMiProvider} from '../context/contexto.js'
 import {useState, useEffect} from 'react'
 import {useRouter} from 'next/router'
+import { useSearchParams } from 'next/navigation';
 
 const ModificarLibro = () => {
 
     const router = useRouter()
     const [cuenta, setCuenta] = useMiProvider()
-    
-    const [libros, setLibros] = useState([]);
+    // para traer el id del URL
+    const id = router.query.id
+    const [libro, setLibro] = useState([]);
+
     async function leer() {
         const opciones = {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
         };
-        const request = await fetch("../api/libros/leer", opciones);
-        const data = await request.json();
-        console.log(data);
-        setLibros(data);
+            const request = await fetch(`/api/libros/leer?id=${id}`, opciones);
+            const data = await request.json();
+            console.log(data);
+            setLibro(data);
+          
     }
+
     useEffect(() => {
         leer();
     }, []);
 
-    const id = router.query.id
-    const p = libros.filter((item)=>{return item["id"] == id.toString()})[0]
-    if (!p) return <p></p>
 
-    let libroModificado = {...p}
+    let libroModificado = {...libro}
     
     function registrarCambio(e){
         libroModificado[e.target.name] = e.target.value
     }
 
-    const escribirJSON = async () =>{
-        console.log(libroModificado)
-        const params = JSON.stringify(libroModificado)
+    // CAMBIAR ESTO DE ESCRIBIR JSON para que escriba en la base de datos
+    const escribirEnBD = async () => {
         try {
-            const peticion = await fetch (
-                '../api/libros/modificar',
-                {
-                    method : 'POST',
-                    body : params,
-                    headers : {
-                        'Content-Type' : 'application/json'
-                    }
-                }
-            )
+            const peticion = await fetch(`/api/libros/modificar?id=${id}`, {
+                method: 'PUT',  // o 'POST' dependiendo de tu API
+                body: JSON.stringify(libroModificado),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
 
-            const data = await peticion.json()
-            alert("libro modificado")
-
+            alert("todo bien")
+            
         } catch (err) {
-            console.log(err)
+            console.error(err);
+            alert("Error al modificar el libro");
         }
-  
-    }
+    };
 
 
     return (<Layout content={
@@ -85,7 +82,7 @@ const ModificarLibro = () => {
                             <Image src="/Rectangle 5.png" width={279} height={253} alt="rectangulo"></Image>
                         </div>
                     </div>
-                    <form action="registrarLibro" onSubmit={hacernada}>
+                    <form action="registrarLibro" onSubmit={(e)=>{e.preventDefault()}}>
                         <div class="col-span-1">
                             <div id="cuadro_texto_idioma">
                                 <div class="borde_text_field">
@@ -148,7 +145,7 @@ const ModificarLibro = () => {
                                                 <p>Serie, tipo</p>
                                             </div>
                                             <div id="input_text_color">
-                                                <input type='text' id="inputSerie" name="genero" onChange={registrarCambio} defaultValue={libroModificado.genero}/>
+                                                <input type='text' id="inputSerie" name="genero" onChange={registrarCambio} defaultValue={libroModificado.tipo}/>
                                             </div>
                                         </div>
                                     </div>
@@ -194,21 +191,13 @@ const ModificarLibro = () => {
                             </div>
 
 
-                            <button id="GuardarLibro" class="guardar" onClick={escribirJSON}>Guardar</button>
+                            <button id="GuardarLibro" class="guardar" onClick={escribirEnBD}>Guardar</button>
 
                         </div>
                         {/* Aquí termina la columna*/}
                     </form>
                 </div>
-                <div id="modalReser-rl" class="modal-container-rl">
-                    <div class="modal-content-rl">
-                        <h2>Registro Completo</h2>
-                        <p>El recurso ha sido grabado con éxito.</p>
-                        <div id="close-rl" class="cerrar-rl">
-                            <p>OK</p>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
 
         </>
@@ -217,28 +206,3 @@ const ModificarLibro = () => {
     )
 }
 export default ModificarLibro
-
-function hacernada(e){
-    e.preventDefault()
-}
-function guardarLib() {
-    
-    const openModal = document.getElementById("GuardarLibro");
-    const modalReserva = document.getElementById("modalReser-rl");
-    const closeModal = document.getElementById("close-rl");
-
-    openModal.onclick = function(){
-        modalReserva.style.visibility = "visible";
-    }
-
-    closeModal.onclick = function(){
-        modalReserva.style.visibility = "hidden";
-    }
-    // cerrar en ventana
-    modalReserva.onclick = function(){
-        modalReserva.style.visibility = "hidden";
-    }
-
-    // Aquí puedes realizar cualquier otra acción relacionada con la reserva
-
-  }
