@@ -14,6 +14,7 @@ const ModificarLibro = () => {
     // para traer el id del URL
     const id = router.query.id
     const [libro, setLibro] = useState([]);
+    console.log("id: ", id)
 
     async function leer() {
         const opciones = {
@@ -26,7 +27,6 @@ const ModificarLibro = () => {
             const data = await request.json();
             console.log(data);
             setLibro(data);
-          
     }
 
     useEffect(() => {
@@ -58,7 +58,7 @@ const ModificarLibro = () => {
             alert("Error al modificar el libro");
         }
     };
-
+    
 
     return (<Layout content={
         <>

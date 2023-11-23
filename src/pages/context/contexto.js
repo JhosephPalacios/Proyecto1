@@ -3,8 +3,6 @@ import { createContext, useContext, useState } from 'react'
 const Context = createContext()
 
 export function MiProvider(  {children}  ){
-
-    // Valores iniciales de una cuenta de invitado
     const [cuenta, setCuenta] = useState({
         "id": "-1",
         "tipo": "guest",

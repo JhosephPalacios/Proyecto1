@@ -206,6 +206,24 @@ const Index = () => {
         llamarProximos()
     }, [pageProximo])
 
+    const llamarMasPedidos = async () => {
+
+        const peticion = {
+            method: 'GET', 
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+        const request = await fetch(`/api/libros/MasPedidos?page=${pageMasPedidos}`, peticion);
+        const data = await request.json();   
+        setDatos1(data.items)
+        setTotalpageMasPedidos(data.totalPages)
+        
+    };
+    useEffect(() => {
+        llamarMasPedidos()
+    }, [pageMasPedidos])
+
 
     const escribirJSONRecientes = async (e) => {
         const params = JSON.stringify(cuenta)
@@ -249,7 +267,7 @@ const Index = () => {
     */
     useEffect(() => {
         llamarProximos()
-        escribirJSONMasPedidos()
+        llamarMasPedidos()
         llamarRecientes()
     }, []);
 
@@ -392,29 +410,29 @@ const Index = () => {
                                     {Object.entries(datosMasPedidos).map((value, index) => {
                                         return (
                                             <div>
-                                                <Link href="/libro/[id]" as={"/libro/" + value[1].libro.id}>
+                                                <Link href="/libro/[id]" as={"/libro/" + value[1].id}>
                                                     <div class="libro">
                                                         <div class="grid grid-cols-6 col-span-1">
                                                             <div class="col-start-1 col-span-1">
                                                                 <div class="circulo">
-                                                                    <p className="inicial">{obtenerInicialesEnMayuscula(value[1].libro.titulo)}</p>
+                                                                    <p className="inicial">{obtenerInicialesEnMayuscula(value[1].titulo)}</p>
                                                                 </div>
                                                             </div>
                                                             <div class="col-start-2 col-end-5">
                                                                 <div className="contenedorTituloLibro">
                                                                     <div class="line-clamp-2">
-                                                                        <p class="tituloLibro"><b>"{value[1].libro.titulo}"</b></p>
+                                                                        <p class="tituloLibro"><b>"{value[1].titulo}"</b></p>
                                                                     </div>
                                                                 </div>
                                                                 <div className="contenedorInfoLibro">
                                                                     <div class="line-clamp-1">
-                                                                        <p className="infoLibro">Veces pedido: {value[1].cantidad}</p>
+                                                                        <p className="infoLibro">Veces pedido: {value[1].contador}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-start-6 col-span-1">
                                                                 <div class="imagenLibro">
-                                                                    <Image src={value[1].libro.imagen} width={80} height={101} alt="libro"></Image>
+                                                                    <Image src={value[1].imagen} width={80} height={101} alt="libro"></Image>
                                                                 </div>
                                                             </div>
                                                         </div>

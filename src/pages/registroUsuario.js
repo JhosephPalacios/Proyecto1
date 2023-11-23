@@ -4,31 +4,7 @@ import {useState, useEffect} from 'react'
 import {useRouter} from 'next/router'
 
 const registroUsuario = () => {
-
-    /*
-    // ANTIGUO Leer cuentas
-    
-    const [cuentas, setCuentas] = useState([]);
-    async function leer() {
-        const opciones = {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        };
-        const request = await fetch("/api/cuentas/leer", opciones);
-        const data = await request.json();
-        console.log(data);
-        setCuentas(data);
-    }
-    useEffect(() => {
-        leer();
-    }, []);
-    */
-
     const router = useRouter()
-
-    // Valores por defecto de un nuevo usuario
     const [nuevo, setNuevo] = useState({
         "tipo": "user",
         "nombres": "",

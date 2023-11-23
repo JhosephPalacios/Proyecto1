@@ -23,8 +23,6 @@ const Busqueda = () => {
             <div
             class="w-full h-auto border-2 border-black flex flex-col items-center justify-center p-[10px]"
             >
-
-
             <div
                 class="w-full h-auto flex flex-row items-center justify-around pt-[10px]"
             >

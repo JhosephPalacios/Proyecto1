@@ -3,13 +3,13 @@
 		"cuenta": {
 			"id": "1",
 			"tipo": "user",
-			"nombres": "Juan Carlos",
-			"apellidos": "Bodoque",
+			"nombres": "Lionel Andres",
+			"apellidos": "Messi",
 			"tipo_documento": "dni",
 			"nro_documento": "77777777",
 			"correo": "user@ulima.edu.pe",
 			"contrasenha": "user",
-			"foto": "/juancarlos.jpg"
+			"foto": "/messi.jpg"
 		},
 		"libro": {
 			"id": "43",
@@ -29,13 +29,13 @@
 		"cuenta": {
 			"id": "1",
 			"tipo": "user",
-			"nombres": "Juan Carlos",
-			"apellidos": "Bodoque",
+			"nombres": "Lionel Andres",
+			"apellidos": "Messi",
 			"tipo_documento": "dni",
 			"nro_documento": "77777777",
 			"correo": "user@ulima.edu.pe",
 			"contrasenha": "user",
-			"foto": "/juancarlos.jpg"
+			"foto": "/messi.jpg"
 		},
 		"libro": {
 			"id": "69",
@@ -55,13 +55,13 @@
 		"cuenta": {
 			"id": "1",
 			"tipo": "user",
-			"nombres": "Juan Carlos",
-			"apellidos": "Bodoque",
+			"nombres": "Lionel Andres",
+			"apellidos": "Messi",
 			"tipo_documento": "dni",
 			"nro_documento": "77777777",
 			"correo": "user@ulima.edu.pe",
 			"contrasenha": "user",
-			"foto": "/juancarlos.jpg"
+			"foto": "/messi.jpg"
 		},
 		"libro": {
 			"id": "45",
@@ -81,13 +81,13 @@
 		"cuenta": {
 			"id": "1",
 			"tipo": "user",
-			"nombres": "Juan Carlos",
-			"apellidos": "Bodoque",
+			"nombres": "Lionel Andres",
+			"apellidos": "Messi",
 			"tipo_documento": "dni",
 			"nro_documento": "77777777",
 			"correo": "user@ulima.edu.pe",
 			"contrasenha": "user",
-			"foto": "/juancarlos.jpg"
+			"foto": "/messi.jpg"
 		},
 		"libro": {
 			"id": "42",
@@ -107,13 +107,13 @@
 		"cuenta": {
 			"id": "2",
 			"tipo": "user",
-			"nombres": "Tulio",
-			"apellidos": "Trivino",
+			"nombres": "Ricardo",
+			"apellidos": "Gareca",
 			"tipo_documento": "dni",
 			"nro_documento": "88888888",
 			"correo": "user2@ulima.edu.pe",
 			"contrasenha": "user2",
-			"foto": "/tulio.jpg"
+			"foto": "/gareca.png"
 		},
 		"libro": {
 			"id": "42",
@@ -133,13 +133,13 @@
 		"cuenta": {
 			"id": "2",
 			"tipo": "user",
-			"nombres": "Tulio",
-			"apellidos": "Trivino",
+			"nombres": "Ricardo",
+			"apellidos": "Gareca",
 			"tipo_documento": "dni",
 			"nro_documento": "88888888",
 			"correo": "user2@ulima.edu.pe",
 			"contrasenha": "user2",
-			"foto": "/tulio.jpg"
+			"foto": "/gareca.png"
 		},
 		"libro": {
 			"id": "42",
@@ -159,13 +159,13 @@
 		"cuenta": {
 			"id": "2",
 			"tipo": "user",
-			"nombres": "Tulio",
-			"apellidos": "Trivino",
+			"nombres": "Ricardo",
+			"apellidos": "Gareca",
 			"tipo_documento": "dni",
 			"nro_documento": "88888888",
 			"correo": "user2@ulima.edu.pe",
 			"contrasenha": "user2",
-			"foto": "/tulio.jpg"
+			"foto": "/gareca.png"
 		},
 		"libro": {
 			"id": "45",

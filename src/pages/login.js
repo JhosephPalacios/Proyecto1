@@ -7,8 +7,6 @@ import { useMiProvider } from './context/contexto'
 const login = () => {
     const router = useRouter()
     const [cuenta, setCuenta] = useMiProvider()
-
-    // Credenciales para logearse correctamente
     const [credenciales, setCredenciales] = useMiProvider(
         {
             "correo" : "",
@@ -18,9 +16,7 @@ const login = () => {
     function registrarCambio(e){
         setCredenciales({...credenciales, [e.target.name]:e.target.value})
     }
-
     async function handleLogin() {
-        // Query buscando correo y contrasenha
         let params = JSON.stringify(credenciales)
         const opciones = {
             method: "POST",
@@ -31,8 +27,6 @@ const login = () => {
         };
         const request = await fetch("/api/personas/validar", opciones);
         const data = await request.json();
-
-        // Eatablece el estado segun la cuenta ingresada 
         if(!data) {
             alert("Datos incorrectos")
             return;
@@ -46,7 +40,6 @@ const login = () => {
         else if(data.tipo == "user"){
             console.log("usuario")
         }
-
         setCuenta(data);
         router.push('/')
     }

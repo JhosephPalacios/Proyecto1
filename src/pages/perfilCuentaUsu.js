@@ -19,7 +19,7 @@ const Perfil = () => {
     const escribirEnBD = async () => {
         try {
             const peticion = await fetch(`/api/personas/modificar2?id=${cuenta.id}`, {
-                method: 'PUT',  // o 'POST' dependiendo de tu API
+                method: 'PUT',
                 body: JSON.stringify(cuenta_modificada),
                 headers: {
                     'Content-Type': 'application/json',
@@ -48,8 +48,6 @@ const Perfil = () => {
         }
       }
     function handleGuardar() {
-        // Realiza cualquier validación o procesamiento adicional aquí si es necesario
-      
         escribirEnBD(); // Llama a tu función para enviar los datos al servidor
     }
     return (
@@ -84,7 +82,7 @@ const Perfil = () => {
                             class="text_foto"
                             id="myfile"
                             name="foto"
-                            accept="image/*" // Acepta solo archivos de imagen
+                            accept="image/*"
                             onChange={handleImagenSeleccionada}
                             />
                         <button type="button" className="guardar_foto" onClick={handleGuardar}>Guardar</button>
@@ -131,7 +129,7 @@ const Perfil = () => {
             <button type="button" class="guardar" onClick={escribirEnBD}>Guardar</button>
 
             </div>
-            {/* Aquí termina la columna*/}
+            {}
         
         </div>
     </div>

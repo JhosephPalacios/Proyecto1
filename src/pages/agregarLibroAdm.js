@@ -203,7 +203,7 @@ const Perfil = () => {
                             <button id="GuardarLibro" class="guardar" onClick={escribirJSON}>Guardar</button>
 
                         </div>
-                        {/* Aquí termina la columna*/}
+                        {}
                     </form>
                 </div>
                 <div id="modalReser-rl" class="modal-container-rl">
@@ -240,11 +240,7 @@ function guardarLib() {
     closeModal.onclick = function(){
         modalReserva.style.visibility = "hidden";
     }
-    // cerrar en ventana
     modalReserva.onclick = function(){
         modalReserva.style.visibility = "hidden";
     }
-
-    // Aquí puedes realizar cualquier otra acción relacionada con la reserva
-
   }

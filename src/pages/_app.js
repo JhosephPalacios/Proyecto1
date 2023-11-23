@@ -21,5 +21,3 @@ export default function MyApp( {Component, pageProps}) {
         </MiProvider>
     )
 }
-
-// Generador de datos de libros: https://www.mockaroo.com/schemas/clone?clone=1696350881709

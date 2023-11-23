@@ -32,7 +32,7 @@ export default props => {
         foto_src = cuenta.foto
         foto_href = '/perfilDatosUsu'
     }
-    else { // Sin haberse logeado (invitado) (guest)
+    else { 
         titulo = 'Biblioteca'
         segundo_link_mostrar = false
         tercer_link_titulo = 'Buscar'

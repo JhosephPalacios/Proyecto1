@@ -15,28 +15,17 @@ const Resultados_lista = () => {
 
     console.log("RENDER")
 
-    // Utilidades
     const [cuenta, setCuenta] = useMiProvider();
     const router = useRouter()
-
     const [page, setPage] = useState(1)
     const [totalPages, setTotalPages] = useState(1)
-
-    // Parametros de la URL
     const searchParams = useSearchParams()
     let keyword = searchParams.get('keyword')
     let type = searchParams.get('type')
     let filters = searchParams.get('filters')
-    // SI QUIERO OBTENER EL VALOR DESDE LA URL -> IR A busqueda.js
-    //let page1 = parseInt(searchParams.get('page'))
-    
-
-    // Acutalizar tabla
     const [yaActualizado, setYaActualizado] = useState(false)
     const [resultados, setResultados] = useState([]);
     const [libroselec, setlibroselec] = useState([]);
-
-    // Actualizar tabla cuando hayan filtros
     if (keyword || type || filters) {
         console.log("existen los filtros")
         if (yaActualizado == false) {
@@ -46,8 +35,6 @@ const Resultados_lista = () => {
     else {
         console.log("sin filtros")
     }
-
-    // Leer datos de libros
     async function leer() {
 
         console.log("buscando: ", { keyword, type, filters })
@@ -62,8 +49,6 @@ const Resultados_lista = () => {
         const request = await fetch(`/api/libros/busqueda?keyword=${keyword}&type=${type}&filters=${filters}&page=${page}`, opciones); //  Primera prueba de conexion con backend
         const data = await request.json();
         console.log(data);
-
-        // Actualiza el estado con los resultados de la API
         setResultados(data.items);
         setYaActualizado(true);
         setTotalPages(data.totalPages)
@@ -87,9 +72,6 @@ const Resultados_lista = () => {
         leer()
     }, [page])
 
-
-
-    // Controlar Modal
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isModal2Open, setIsModal2Open] = useState(false);
     const openModal1 = () => {
@@ -105,14 +87,12 @@ const Resultados_lista = () => {
         setIsModal2Open(false);
     };
 
-    // Controlar fecha y reserva
     const [fechaSeleccionada, setFechaSeleccionada] = useState(obtenerFechaFutura())
     function handleChange(event) {
         const fecha = event.target.value;
         setFechaSeleccionada(fecha)
     }
 
-    // Obtener fechas
     function obtenerFechaActual() {
         const hoy = new Date();
         const year = hoy.getFullYear();
@@ -129,16 +109,13 @@ const Resultados_lista = () => {
         return `${year}-${mes}-${dia}`;
     }
 
-    // Enviar nueva reserva
     async function reservar(libro) {
-        // Generar nuevo objeto JSON
         let obj = {
             "persona_id": cuenta.id,
             "libro_id": libro.id,
             "fecha_inicio": obtenerFechaActual(),
             "fecha_final": fechaSeleccionada
         }
-        // Llamar a reservar
         const opciones = {
             method: 'POST',
             body: JSON.stringify(obj),
@@ -151,7 +128,6 @@ const Resultados_lista = () => {
         let data = await request.json()
         console.log(data)
 
-        // Volver a realizar consulta de libros y disponibilidad
         setYaActualizado(false)
 
     }

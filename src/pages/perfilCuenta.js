@@ -18,7 +18,7 @@ const Perfil = () => {
     const escribirEnBD = async () => {
         try {
             const peticion = await fetch(`/api/personas/modificar2?id=${cuenta.id}`, {
-                method: 'PUT',  // o 'POST' dependiendo de tu API
+                method: 'PUT', 
                 body: JSON.stringify(cuenta_modificada),
                 headers: {
                     'Content-Type': 'application/json',
@@ -46,9 +46,7 @@ const Perfil = () => {
         }
       }
     function handleGuardar() {
-        // Realiza cualquier validación o procesamiento adicional aquí si es necesario
-      
-        escribirEnBD(); // Llama a tu función para enviar los datos al servidor
+        escribirEnBD(); 
     }
 
     return (

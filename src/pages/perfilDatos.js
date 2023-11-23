@@ -31,11 +31,7 @@ const Perfil = () => {
             alert("Error al modificar la persona.");
         }
     };
-
     return (
-
-
-
 <Layout content={
 <>
     <Head>
@@ -141,7 +137,7 @@ const Perfil = () => {
                         <button type="button" class="guardar" onClick={escribirEnBD}>Guardar</button>
 
                     </div>
-                    {/* Aquí termina la columna*/}
+                    {}
 
                 </div>
             </div>   
