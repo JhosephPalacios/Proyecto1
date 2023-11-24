@@ -8,8 +8,6 @@ export default async function leer(req, res) {
 
     let filePathDatos = '/src/json/reservas.json'
     let rutaDatos = path.join( process.cwd() , filePathDatos )
-
-    // lectura datos
     let data
     try {
         data = await fsPromises.readFile( rutaDatos )
@@ -18,7 +16,6 @@ export default async function leer(req, res) {
     } catch( error) {
         console.log("Ocurrio un error al leer ")
     }
-    //Modificar data
     let resultado=[]
     const tmp = JSON.stringify(req.body).replace("'",'"')
     const body = JSON.parse(tmp)

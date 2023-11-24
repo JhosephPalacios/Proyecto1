@@ -46,7 +46,7 @@ const Resultados_lista = () => {
             },
         };
 
-        const request = await fetch(`/api/libros/busqueda?keyword=${keyword}&type=${type}&filters=${filters}&page=${page}`, opciones); //  Primera prueba de conexion con backend
+        const request = await fetch(`/api/libros/busqueda?keyword=${keyword}&type=${type}&filters=${filters}&page=${page}`, opciones); 
         const data = await request.json();
         console.log(data);
         setResultados(data.items);

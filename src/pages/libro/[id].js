@@ -11,12 +11,9 @@ import Modal from "../modal.js"
 
 const detalleLibro = () => {
 
-    // para deshabilitar el boton "recargar al reservar"
     const router = useRouter()
     const [cuenta, setCuenta] = useMiProvider()
-
     const [libro, setLibro] = useState([]);
-
     const [yaActualizado, setYaActualizado] = useState(false)
 
     const id = router.query.id
@@ -38,7 +35,6 @@ const detalleLibro = () => {
         setYaActualizado(true);
     }
 
-
     if(id){
         if (yaActualizado == false) {
             leer()
@@ -47,10 +43,6 @@ const detalleLibro = () => {
         console.log("noexiste id ;c")
     }
 
-
-
-
-    // Eliminar
     async function handleEliminar() {
         try {
             const peticion = await fetch(
@@ -73,10 +65,7 @@ const detalleLibro = () => {
     }
 
 
-
-
     const [isModal2Open, setIsModal2Open] = useState(false);
-    // Modal
     const openModal2 = () => {
         setIsModal2Open(true);
     };
@@ -101,14 +90,12 @@ const detalleLibro = () => {
     }
 
     async function reservar(libro) {
-        // Generar nuevo objeto JSON
         let obj = {
             "persona_id": cuenta.id,
             "libro_id": libro.id,
             "fecha_inicio": obtenerFechaActual(),
             "fecha_final": fechaSeleccionada
         }
-        // Llamar a reservar
         const opciones = {
             method: 'POST',
             body: JSON.stringify(obj),
@@ -120,8 +107,6 @@ const detalleLibro = () => {
         const request = await fetch('api/reservas/reservar', opciones)
         let data = await request.json()
         console.log(data)
-
-        // Volver a realizar consulta de libros y disponibilidad
         setYaActualizado(false)
 
     }
@@ -225,14 +210,8 @@ const detalleLibro = () => {
                         <button id="boton_eliminar" onClick={handleEliminar}>Eliminar</button>
                     </div>
                 )}
-
-
-
             </div>
-            
-                    
         </>
-
     }
     
     ></Layout>

@@ -11,7 +11,6 @@ const ModificarLibro = () => {
 
     const router = useRouter()
     const [cuenta, setCuenta] = useMiProvider()
-    // para traer el id del URL
     const id = router.query.id
     const [libro, setLibro] = useState([]);
     console.log("id: ", id)
@@ -33,14 +32,13 @@ const ModificarLibro = () => {
         leer();
     }, []);
 
-
     let libroModificado = {...libro}
     
     function registrarCambio(e){
         libroModificado[e.target.name] = e.target.value
     }
 
-    // CAMBIAR ESTO DE ESCRIBIR JSON para que escriba en la base de datos
+    // CAMBIAR para que escriba en la base de datos
     const escribirEnBD = async () => {
         try {
             const peticion = await fetch(`/api/libros/modificar?id=${id}`, {
@@ -189,12 +187,10 @@ const ModificarLibro = () => {
                                     <p></p>
                                 </div>
                             </div>
-
-
                             <button id="GuardarLibro" class="guardar" onClick={escribirEnBD}>Guardar</button>
 
                         </div>
-                        {/* Aquí termina la columna*/}
+                        {}
                     </form>
                 </div>
                 

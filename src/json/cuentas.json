@@ -2,7 +2,7 @@
 	{
 		"id": "0",
 		"tipo": "admin",
-		"nombres": "soyadmin",
+		"nombres": "admin",
 		"apellidos": "administrador",
 		"tipo_documento": "dni",
 		"nro_documento": "77777777",

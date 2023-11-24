@@ -4,7 +4,6 @@ const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
 
-// Configura multer para manejar la carga de archivos.
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const uploadDir = path.join(__dirname, '../../public/uploads');
@@ -21,7 +20,6 @@ const upload = multer({ storage });
 
 router.post('/upload-image', upload.single('image'), (req, res) => {
   try {
-    // Aquí puedes actualizar la dirección de la imagen en el JSON del usuario.
     const imagePath = `./public/uploads/${req.file.filename}`;
     res.json({ imagePath });
   } catch (error) {

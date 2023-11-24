@@ -5,8 +5,6 @@ import process from 'process'
 export default async function leer(req, res) {
     let filePath = '/src/json/masPedidos.json'
     let ruta = path.join( process.cwd() , filePath )
-
-    // lectura
     try {
         let data = await fsPromises.readFile( ruta )
         console.log(data)

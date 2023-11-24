@@ -10,7 +10,6 @@ import '../styles/style_agregarLibroadm.css'
 import '../styles/style_colores_adicionales.css'
 import '../styles/index.css'
 
-
 import { AppProps } from 'next/app'
 import { MiProvider } from './context/contexto'
 

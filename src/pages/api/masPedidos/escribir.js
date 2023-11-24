@@ -8,7 +8,6 @@ export default async function leer(req, res) {
 
     let filePathDatos = '/src/json/reservas.json'
     let rutaDatos = path.join( process.cwd() , filePathDatos )
-    // lectura datos
     let data
     try {
         data = await fsPromises.readFile( rutaDatos )
@@ -19,7 +18,6 @@ export default async function leer(req, res) {
     } catch( error) {
         console.log("Ocurrio un error al leer", error)
     }
-    //Modificar data
     let resultado=[]
     data.forEach(element => {
         if (resultado.length<1) {
@@ -45,7 +43,6 @@ export default async function leer(req, res) {
     resultado.sort((a,b) => b.cantidad - a.cantidad)
     console.log(resultado)
         
-    // Escritura
     try {
         let tmp = JSON.stringify(resultado,null,'\t')
         console.log( tmp )
