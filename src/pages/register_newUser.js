@@ -41,7 +41,7 @@ const registroUsuario = () => {
             )
 
             const data = await peticion.json()
-            router.push('/login')
+            router.push('/login_general')
 
         } catch (err) {
             console.log(err)
@@ -54,19 +54,19 @@ const registroUsuario = () => {
         <Head>
             <title>Registro usuario</title>
         </Head>
-        <div id="cuerpo_registro">
+        <div id="registro-cuerpo">
             <div id="titulo_registro1">
-                <div id="titulo_registro">
+                <div id="registro-titulo">
                     <p><b>Sistema de reserva de libros</b></p>
                 </div>
             </div>
             <div id="subtitulo_registro1">
-                <div id="subtitulo_registro">
+                <div id="registro-subtitulo">
                     <p><b>Registro de usuario</b></p>
                 </div>
             </div>
 
-            <form action=""  onSubmit={(e)=>e.preventDefault()} method='get' id="formulario_registro">
+            <form action=""  onSubmit={(e)=>e.preventDefault()} method='get' id="registro-formulario">
 
                 <div id="todo_datPers">
                     <div id="text_datosPersonales">

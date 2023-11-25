@@ -3,7 +3,7 @@
     position: relative;
 }
 
-#titulo_registro{
+#registro-titulo{
     color: rgba(0, 0, 0, 1);
     text-align: center;
     font-family:"Roboto", sans-serif;
@@ -19,7 +19,7 @@
 
 }
 
-#cuerpo_registro{
+#registro-cuerpo{
     width: auto;
     background: #FFF;
     overflow: auto;
@@ -27,7 +27,7 @@
     flex-direction: column;
     justify-content: center; /* Centrar verticalmente */
     align-items: center; /* Centrar horizontalmente */
-    height: 100vh; /* Tamaño de la ventana del navegador */
+    height: 120vh; /* Tamaño de la ventana del navegador */
     
 }
 
@@ -35,7 +35,7 @@
     position: relative;
 }
 
-#subtitulo_registro{
+#registro-subtitulo{
     color: #000;
     text-align: center;
     font-family: "Roboto", sans-serif;
@@ -50,7 +50,7 @@
     height: 20px;
 }
 
-#formulario_registro{
+#registro-formulario{
     width: 745px;
     height: 370px;
     flex-shrink: 0;
@@ -171,11 +171,11 @@
 #todo_datPers{
     position: absolute;
     left: 0%;
-    bottom: 30%;
+    bottom: -15%;
 }
 
 #todo_datCuenta{
     position: absolute;
     left: 63%;
-    bottom: 51%;
+    bottom: 16%;
 }

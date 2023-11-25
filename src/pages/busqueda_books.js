@@ -22,7 +22,7 @@ export default function Busqueda() {
         params.set('type', tipoRecurso);
         params.set('filters', selectedFilters);
         console.log(params.toString())
-        router.push(`/resultados?${params.toString()}`)
+        router.push(`/results_busqueda?${params.toString()}`)
     };
     const handleCheckboxChange = (e) => {
         const value = e.target.value;
