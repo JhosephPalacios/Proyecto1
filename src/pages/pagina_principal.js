@@ -2,7 +2,7 @@ import Link from "next/link"
 import Head from 'next/head'
 import Image from 'next/image'
 import Layout from './components/Layout.js'
-import { useMiProvider } from './context/contexto'
+import { useMiProvider } from './context/contexto.js'
 import library from '../json/libros.json'
 import { useState, useEffect } from "react"
 

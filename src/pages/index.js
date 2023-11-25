@@ -36,11 +36,12 @@ const login = () => {
             console.log("administrador")
             document.querySelector(':root').style.setProperty('--color-primario', data.color)
             document.querySelector(':root').style.setProperty('--color-secundario', newShade(data.color, 100))
-            router.push('/paginaprincipal');
+            router.push('/pagina_principal')
         }
         else if(data.tipo == "user"){
             console.log("usuario")
-            router.push('/paginaprincipal');
+            router.push('/pagina_principal')
+
         }
         setCuenta(data);
         router.push('/')
