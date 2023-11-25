@@ -1,485 +1,140 @@
-import Link from "next/link"
 import Head from 'next/head'
-import Image from 'next/image'
-import Layout from './components/Layout.js'
+import Link from 'next/link'
+import {useRouter} from 'next/router'
+import {useState, useEffect} from 'react'
 import { useMiProvider } from './context/contexto'
-import library from '../json/libros.json'
-import { useState, useEffect } from "react"
 
-const Index = () => {
-
+const login = () => {
+    const router = useRouter()
     const [cuenta, setCuenta] = useMiProvider()
-
-    const [datosMasRecientes, setdatosMasRecientes] = useState([]) 
-    const [pageMasRecientes, setPage] = useState(1)
-    const [totalPages, setTotalPages] = useState(1)
-
-    async function leerRecientes() {
+    const [credenciales, setCredenciales] = useMiProvider(
+        {
+            "correo" : "",
+            "contrasenha" : ""
+        }
+    )
+    function registrarCambio(e){
+        setCredenciales({...credenciales, [e.target.name]:e.target.value})
+    }
+    async function handleLogin() {
+        let params = JSON.stringify(credenciales)
         const opciones = {
-            method: 'GET',
+            method: "POST",
+            body : params,
             headers: {
-                "Content-Type": "application/json"
-            }
-        }
-        const request = await fetch(`/api/ordenarIndex/ordenarRecientes?page=${pageMasRecientes}`, opciones)
-        let data = await request.json()
-        console.log(data)
-
-        setdatosMasRecientes(data.items)
-        setTotalPages(data.totalPages)
-    }
-
-    function retrocederLosMasRecientes() {
-        if (pageMasRecientes > 1) {
-            setPage(pageMasRecientes - 1)
-        }
-
-    }
-    function avanzarLosMasRecientes() {
-        if (pageMasRecientes < totalPages) {
-            setPage(pageMasRecientes + 1)
-        }
-
-    }
-    useEffect(() => {
-        leerRecientes()
-    }, [pageMasRecientes]) 
-
-
-    const [datosMasPedidos, setDatos1] = useState([]) 
-    const [pageMasPedidos, setpageMasPedidos] = useState(1)
-    const [totalPages1, setTotalpageMasPedidos] = useState(1)
-
-    async function leerMasPedidos() {
-        const opciones = {
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }
-        const request = await fetch(`/api/ordenarIndex/ordenarMasPedidos?page=${pageMasPedidos}`, opciones)
-        let data = await request.json()
-        console.log(data)
-        setDatos1(data.items)
-        setTotalpageMasPedidos(data.totalPages1)
-    }
-
-    function retrocederLosMasPedidos() {
-        if (pageMasPedidos > 1) {
-            setpageMasPedidos(pageMasPedidos - 1)
-        }
-
-    }
-    function avanzarLosMasPedidos() {
-        if (pageMasPedidos < totalPages1) {
-            setpageMasPedidos(pageMasPedidos + 1)
-        }
-
-    }
-    useEffect(() => {
-        leerMasPedidos()
-    }, [pageMasPedidos]) 
-
-
-
-
-    const [datosProximo, setDatos2] = useState([]) 
-    const [pageProximo, setpageProximo] = useState(1)
-    const [totalPages2, setTotalpageProximo] = useState(1)
-
-    async function leerProximos() {
-        const opciones = {
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }
-        const request = await fetch(`/api/ordenarIndex/ordenarProximos?page=${pageProximo}`, opciones)
-        let data = await request.json()
-        console.log(data)
-
-        setDatos2(data.items)
-        setTotalpageProximo(data.totalPages2)
-    }
-
-    function retrocederProximo() {
-        if (pageProximo > 1) {
-            setpageProximo(pageProximo - 1)
-        }
-
-    }
-    function avanzarProximo() {
-        if (pageProximo < totalPages2) {
-            setpageProximo(pageProximo + 1)
-        }
-
-    }
-
-    useEffect(() => {
-        leerProximos()
-    }, [pageProximo]) 
-
-
-
-    const escribirJSON = async (e) => {
-        const params = JSON.stringify(cuenta)
-        try {
-            const peticion = await fetch(
-                '/api/proximos/escribir',
-                {
-                    method: 'POST',
-                    body: params,
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-            )
-            const data = await peticion.json()
-            leerProximos()
-
-        } catch (err) {
-            console.log(err)
-        }
-
-    }
-    const escribirJSONMasPedidos = async (e) => {
-        try {
-            const peticion = await fetch(
-                '/api/masPedidos/escribir',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-            )
-            const data = await peticion.json()
-            leerMasPedidos()
-
-        } catch (err) {
-            console.log(err)
-        }
-
-    }
-
-    const llamarRecientes = async () => {
-
-        const peticion = {
-            method: 'GET', 
-            headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
             },
         };
-        if(cuenta.tipo == "user"){
-            const request = await fetch(`/api/reservas/ultimas?id=${cuenta.id}&page=${pageMasRecientes}`, peticion);
-            const data = await request.json();   
-            setdatosMasRecientes(data.items)
-            setTotalPages(data.totalPages)
-        }
-        if(cuenta.tipo == "admin"){
-            const request = await fetch(`/api/reservas/ultimasAdmin?id=${cuenta.id}&page=${pageMasRecientes}`, peticion);
-            const data = await request.json();   
-            setdatosMasRecientes(data.items)
-            setTotalPages(data.totalPages)
-        }
-    };
-    useEffect(() => {
-        llamarRecientes()
-    }, [pageMasRecientes])
-
-
-    const llamarProximos = async () => {
-
-        const peticion = {
-            method: 'GET', 
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        };
-        const request = await fetch(`/api/reservas/proximos?id=${cuenta.id}&page=${pageProximo}`, peticion);
-        const data = await request.json();   
-        setDatos2(data.items)
-        setTotalpageProximo(data.totalPages)
-        
-    };
-    useEffect(() => {
-        llamarProximos()
-    }, [pageProximo])
-
-    const llamarMasPedidos = async () => {
-
-        const peticion = {
-            method: 'GET', 
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        };
-        const request = await fetch(`/api/libros/MasPedidos?page=${pageMasPedidos}`, peticion);
-        const data = await request.json();   
-        setDatos1(data.items)
-        setTotalpageMasPedidos(data.totalPages)
-        
-    };
-    useEffect(() => {
-        llamarMasPedidos()
-    }, [pageMasPedidos])
-
-
-    const escribirJSONRecientes = async (e) => {
-        const params = JSON.stringify(cuenta)
-        try {
-            const peticion = await fetch(
-                '/api/recientes/escribir',
-                {
-                    method: 'POST',
-                    body: params,
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-            )
-            const data = await peticion.json()
-            leerRecientes()
-
-        } catch (err) {
-            console.log(err)
+        const request = await fetch("/api/personas/validar", opciones);
+        const data = await request.json();
+        if(!data) {
+            alert("Datos incorrectos")
+            return;
         }
 
+        if(data.tipo == "admin"){
+            console.log("administrador")
+            document.querySelector(':root').style.setProperty('--color-primario', data.color)
+            document.querySelector(':root').style.setProperty('--color-secundario', newShade(data.color, 100))
+            router.push('/paginaprincipal');
+        }
+        else if(data.tipo == "user"){
+            console.log("usuario")
+            router.push('/paginaprincipal');
+        }
+        setCuenta(data);
+        router.push('/')
     }
 
-    //Syncronizar las funciones
-
-    /*
-    async function todo() {
-        await escribirJSON();
-        await escribirJSONMasPedidos();
-        await escribirJSONRecientes();
-        await leerProximos();
-        await leerMasPedidos();
-        await leerRecientes();
-    }
-    */
-    /*useEffect(() => {
-        escribirJSON()
-        escribirJSONMasPedidos()
-        escribirJSONRecientes()
-    }, []);
-    */
-    useEffect(() => {
-        llamarProximos()
-        llamarMasPedidos()
-        llamarRecientes()
-    }, []);
-
-
-
-
-    // Funcionalidad para "Ver todo"
-    const [verTodo, setVerTodo] = useState(false);
-
-
-    return (
-        <Layout content={
-            <>
-                <Head>
-                    <title>..:: Biblioteca ::..</title>
-                </Head>
-                <p></p>
-                <div>
-                    <p id="bienvenida"><b>Bienvenido, {cuenta.nombres}!</b></p>
-                    <Image src="/divider.png" width={1088} height={1} alt="divider"></Image>
+    return(
+    <>
+        <Head>
+            <title>Login</title>
+        </Head>
+        <div id="cuerpo_login">
+            <div id="titulo_login1">
+                <div id="titulo_login">
+                    <p><b>Sistema de reserva de libros</b></p>
                 </div>
-                <br></br>
-                {cuenta.tipo != 'guest' && ( //Guest no ve nada en index
-                    <div>
+            </div>
 
-                        <div class="rectangulo">
-                            <div class="contenedorSubtitulo">
-                                <p class="subtitulo">Últimas reservas</p>
+            <form action="" onSubmit={(e)=>e.preventDefault()} method='get'>
+            <div id="text_field_usuario">
+                <div class="text_field">
+                    <div class="state_layer">
+                        <div class="content">
+                            <div id="text_usuario">
+                                <p>Usuario o Correo</p>
                             </div>
-                            <br></br>
-                            <div class="flex flex-wrap">
-                                {Object.entries(datosMasRecientes).map((value, index) => { 
-                                    return (
-                                        <div>
-                                            <Link href="/libro/[id]" as={"/libro/"+ value[1].reservado.id}>
-                                                <div class="libro">
-                                                    <div class="grid grid-cols-6 col-span-1">
-                                                        <div class="col-start-1 col-span-1">
-                                                            <div class="circulo">
-                                                                <p className="inicial">{obtenerInicialesEnMayuscula(value[1].reservado.titulo)}</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-start-2 col-end-5">
-                                                            <div className="contenedorTituloLibro">
-                                                                <div class="line-clamp-2">
-                                                                    <p class="tituloLibro"><b>"{value[1].reservado.titulo}"</b></p>
-                                                                </div>
-                                                            </div>
-                                                            <div className="contenedorInfoLibro">
-                                                                <div class="line-clamp-1">
-                                                                    <p className="infoLibro">Reservado el: {new Date(value[1].fecha_inicio).toISOString().split('T')[0]}</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-start-6 col-span-1">
-                                                            <div class="imagenLibro">
-                                                                <Image src={value[1].reservado.imagen} width={80} height={101} alt="libro"></Image>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Link>
-                                        </div>
-                                    )
-                                })
-                                }
-                            </div>
-                            <div id="cont-masrecientes" class="relative">
-                                <div id="cont2-masrecientes">
-                                    <button onClick={retrocederLosMasRecientes} disabled={pageMasRecientes === 1} id="retro" class="text-white border border-white rounded-md px-4 py-2 text-base cursor-pointer transition duration-300 ease-in-out hover:bg-white hover:text-black">Anterior</button>
-                                    <button onClick={avanzarLosMasRecientes} disabled={pageMasRecientes === totalPages} id="avanzar">Siguiente</button>
-                                </div>
-                                <div id="cont2-1-masrecientes">
-                                    <p id="total1">Total {pageMasRecientes} de {totalPages}</p>
-                                </div>
-
+                            <div id="input_text_usuario">
+                                <input type='text' placeholder='Ingrese usuario o correo' id="inputUsu" name="correo" onChange={registrarCambio}/>
                             </div>
                         </div>
-                        {cuenta.tipo == 'user' && (
-                            <div class="rectangulo">
-                                <div class="contenedorSubtitulo">
-                                    <h2 class="subtitulo">Próximos a vencer</h2>
-                                </div>
-                                <br></br>
-                                <div class="flex flex-wrap">
-                                    {Object.entries(datosProximo).map((value, index) => {
-                                        return (
-                                            <div>
-                                                <Link href="/libro/[id]" as={"/libro/" + value[1].reservado.id}>
-                                                    <div class="libro">
-                                                        <div class="grid grid-cols-6 col-span-1">
-                                                            <div class="col-start-1 col-span-1">
-                                                                <div class="circulo">
-                                                                    <p className="inicial">{obtenerInicialesEnMayuscula(value[1].reservado.titulo)}</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-start-2 col-end-5">
-                                                                <div className="contenedorTituloLibro">
-                                                                    <div class="line-clamp-2">
-                                                                        <p class="tituloLibro"><b>"{value[1].reservado.titulo}"</b></p>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="contenedorInfoLibro">
-                                                                    <div class="line-clamp-1">
-                                                                        <p className="infoLibro">Fecha de vencimiento: {new Date(value[1].fecha_final).toISOString().split('T')[0]}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-start-6 col-span-1">
-                                                                <div class="imagenLibro">
-                                                                    <Image src={value[1].reservado.imagen} width={80} height={101} alt="libro"></Image>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </Link>
-                                            </div>
-                                        )
-                                    })
-                                    }
-                                </div>
-                                <div id="cont-proximos">
-                                        <div id="cont1-proximos">
-                                            <button onClick={retrocederProximo} disabled={pageProximo === 1} id="retro">Anterior</button>
-                                            <button onClick={avanzarProximo} disabled={pageProximo === totalPages2} id="avanzar">Siguiente</button>
-                                        </div>
-                                        <div id="cont2-proximos">
-                                            <p id="total1">Total {pageProximo} de {totalPages2}</p>
-                                        </div>
-                                    </div>
-
-                            </div>)}
-                        {cuenta.tipo == 'admin' && (
-                            <div class="rectangulo">
-                                <div class="contenedorSubtitulo">
-                                    <h2 class="subtitulo">Los más pedidos</h2>
-                                </div>
-                                <br></br>
-                                <div class="flex flex-wrap">
-                                    {Object.entries(datosMasPedidos).map((value, index) => {
-                                        return (
-                                            <div>
-                                                <Link href="/libro/[id]" as={"/libro/" + value[1].id}>
-                                                    <div class="libro">
-                                                        <div class="grid grid-cols-6 col-span-1">
-                                                            <div class="col-start-1 col-span-1">
-                                                                <div class="circulo">
-                                                                    <p className="inicial">{obtenerInicialesEnMayuscula(value[1].titulo)}</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-start-2 col-end-5">
-                                                                <div className="contenedorTituloLibro">
-                                                                    <div class="line-clamp-2">
-                                                                        <p class="tituloLibro"><b>"{value[1].titulo}"</b></p>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="contenedorInfoLibro">
-                                                                    <div class="line-clamp-1">
-                                                                        <p className="infoLibro">Veces pedido: {value[1].contador}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-start-6 col-span-1">
-                                                                <div class="imagenLibro">
-                                                                    <Image src={value[1].imagen} width={80} height={101} alt="libro"></Image>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </Link>
-                                            </div>
-                                        )
-                                    })
-                                    }
-                                </div>
-                                <div id="cont-maspedidos">
-                                        <div id="cont1-maspedidos">
-                                            <button onClick={retrocederLosMasPedidos} disabled={pageMasPedidos === 1} id="retro">Anterior</button>
-                                            <button onClick={avanzarLosMasPedidos} disabled={pageMasPedidos === totalPages1} id="avanzar">Siguiente</button>
-                                        </div>
-                                        <div id="cont2-maspedidos">
-                                            <p id="total1">Total {pageMasPedidos} de {totalPages1}</p>
-                                        </div>
-                                </div>
-                            </div>)}
-
                     </div>
-                )}
-            </>
-        }
-        ></Layout>
-    )
-}
+                </div>
+                <div class="supporting-text">
+                    <p></p>
+                </div> 
+            </div>
+            <div id="text_field_password">
+                <div class="text_field">
+                    <div class="state_layer">
+                        <div class="content">
+                            <div id="text_contraseña">
+                                <p>Contraseña</p>
+                            </div>
+                            <div id="input_text_contraseña">
+                                <input type='password' placeholder='Ingrese contraseña' id="inputContr" name="contrasenha" onChange={registrarCambio}/>
+                            </div>
 
-export default Index
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
 
-function obtenerInicialesEnMayuscula(texto) {
-    if (texto === undefined) return '';
-    const palabras = texto.split(" ");
-    let iniciales = "";
+            <div id="contenedorContra">
+                <div id="OlvideContra">
+                    <p class="olvC">Olvidé mi contraseña</p>
+                </div>
+            </div>
 
-    for (let i = 0; i < palabras.length && i < 2; i++) {
-        const palabra = palabras[i];
-        if (palabra.length > 0) {
-            const inicial = palabra.charAt(0).toUpperCase();
-            iniciales += inicial;
-        }
+
+            <div id="alinearBotones">
+            
+            
+            <div id="buttonRegis">
+                <div id="slayer-regis">
+                    <Link href="/register_newUser" class="regis">Registro usuario</Link>
+                </div>
+            </div>
+            <button id="bIngre" onClick={handleLogin}>Ingresar</button>
+            </div>
+            </form>
+            
+
+        </div>
+    </>
+)}
+
+
+export default login
+
+const newShade = (hexColor, magnitude) => {
+    hexColor = hexColor.replace(`#`, ``);
+    if (hexColor.length === 6) {
+        const decimalColor = parseInt(hexColor, 16);
+        let r = (decimalColor >> 16) + magnitude;
+        r > 255 && (r = 255);
+        r < 0 && (r = 0);
+        let g = (decimalColor & 0x0000ff) + magnitude;
+        g > 255 && (g = 255);
+        g < 0 && (g = 0);
+        let b = ((decimalColor >> 8) & 0x00ff) + magnitude;
+        b > 255 && (b = 255);
+        b < 0 && (b = 0);
+        return `#${(g | (b << 8) | (r << 16)).toString(16)}`;
+    } else {
+        return hexColor;
     }
-
-    if (iniciales === "") {
-        return texto.toUpperCase();
-    }
-
-    return iniciales;
-}
+};
