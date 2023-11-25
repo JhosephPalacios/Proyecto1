@@ -6,7 +6,7 @@ import { useMiProvider } from './context/contexto.js'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useSearchParams } from 'next/navigation';
-
+import styles from '../styles/estilo_solo_buscar.module.css'
 
 export default function Busqueda() {
 
@@ -41,17 +41,17 @@ export default function Busqueda() {
                     <title>Busqueda</title>
                 </Head>
                 <div id="form_perfil">
-                    <div class="bg-white p-6 rounded-md shadow-md w-12/12 h-full">
-                        <div class="flex justify-between gap-4 mb-4">
-                            <h1 class="text-2xl font-semibold">Búsqueda</h1>
+                    <div>
+                        <div>
+                            <h1>Búsqueda</h1>
                             { cuenta.tipo == 'admin' && (
-                            <Link type="button" href="/agregarLibroAdm" class="px-4 py-2 hover:bg-blue-600 border rounded-full color_fondo_primario color_letra_blanco">Agregar un nuevo recurso</Link>
+                            <Link type="button" href="/agregar_admin_lib" className={styles.BotonAgregar}>Agregar un nuevo recurso</Link>
                             )}
                             </div>
-                        <div class=" py-4 px-4 color_fondo_secundario">
+                        <div>
                             <form class="flex" onSubmit={(e)=>{e.preventDefault()}}>
-                                <div class="w-1/2 mr-4 space-y-4 m-3 ">
-                                    <div id="text_field_b1 relative">
+                                <div class={styles.CajaTexto}>
+                                    <div id="text_field_b2">
                                         <div class="borde_text_field">
                                             <div class="state_layer">
                                                 <div class="content">
@@ -81,37 +81,35 @@ export default function Busqueda() {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="supporting-text">
-                                            <p></p>
+
+                                    </div>
+                                </div>
+                                <div class={styles.Direccion}>
+                                    <div class={styles.CajaBusqueda}>
+                                        <p class={styles.Texto}>Incluir búsqueda en:</p>
+                                        <div class={styles.Busqueda}>
+                                            <label>
+                                                <input type="checkbox" name="filter1" value="titulo" class={styles.Caja} onChange={handleCheckboxChange}></input>
+                                                <span class={styles.Texto}>Titulo</span>
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="filter2" value="autor" class={styles.Caja} onChange={handleCheckboxChange}></input>
+                                                <span class={styles.Texto}>Autor, autores</span>
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="filter3" value="genero" class={styles.Caja} onChange={handleCheckboxChange}></input>
+                                                <span class={styles.Texto}>Serie</span>
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="filter4" value="isbn" class={styles.Caja} onChange={handleCheckboxChange}></input>
+                                                <span class={styles.Texto}>ISBN</span>
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="w-1/2">
-                                    <div class="mb-4">
-                                        <p class="text-gray-700 text-sm text-purple-primary font-bold color_letra_primario">Incluir en busqueda:</p>
-                                        <div class="space-y-2">
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="filter1" value="titulo" class="form-checkbox text-purple-primary border-purple-primary" onChange={handleCheckboxChange}></input>
-                                                <span class="ml-2 text-purple-primary font-bold color_letra_primario">Titulo</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="filter2" value="autor" class="form-checkbox text-purple-primary border-purple-primary" onChange={handleCheckboxChange}></input>
-                                                <span class="ml-2 text-purple-primary font-bold color_letra_primario">Autor, Autores</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="filter3" value="genero" class="form-checkbox text-purple-primary border-purple-primary" onChange={handleCheckboxChange}></input>
-                                                <span class="ml-2 text-purple-primary font-bold color_letra_primario">Topico</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="filter4" value="isbn" class="form-checkbox text-purple-primary border-purple-primary" onChange={handleCheckboxChange}></input>
-                                                <span class="ml-2 text-purple-primary font-bold color_letra_primario">ISBN</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-right space-x-2 ">
-                                    <button type="reset" class="bg-purple-bg text-purple-primary px-4 py-2 hover:bg-blue-600 border rounded-full color_letra_primario">Limpiar</button>
-                                    <button type="submit" onClick={handleSearch} class="bg-purple-primary text-purple-bg px-4 py-2 hover:bg-blue-600 border rounded-full color_fondo_primario color_letra_blanco" >Buscar</button>
+                                <div class={styles.CajaBotones}>
+                                    <button type="reset" className={styles.BotonLimpiar}>Limpiar</button>
+                                    <button type="submit" onClick={handleSearch} className={styles.BotonBuscar}>Buscar</button>
                                 </div>
                             </form>
                         </div>
