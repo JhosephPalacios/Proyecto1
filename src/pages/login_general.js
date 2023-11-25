@@ -103,7 +103,7 @@ const login = () => {
             
             <div id="buttonRegis">
                 <div id="slayer-regis">
-                    <Link href="/registroUsuario" class="regis">Registro usuario</Link>
+                    <Link href="/register_newUser" class="regis">Registro usuario</Link>
                 </div>
             </div>
             <button id="bIngre" onClick={handleLogin}>Ingresar</button>

@@ -2,7 +2,7 @@ import Link from "next/link"
 import Head from 'next/head'
 import Image from 'next/image'
 import Layout from './components/Layout.js'
-import { useMiProvider } from './context/contexto'
+import { useMiProvider } from './context/contexto.js'
 
 
 const Perfil = () => {
@@ -65,10 +65,10 @@ const Perfil = () => {
     <div id="form_perfil">
         <div id="barra_perfil_usuario">
             <div id="barra_texto_notselected_usuario">
-                <Link href="/perfilDatosUsu">DATOS PERSONALES</Link>
+                <Link href="/modif_Datos_user">DATOS PERSONALES</Link>
             </div>
             <div id="barra_texto_selected_usuario" className="selected">
-                <Link href="/perfilCuentaUsu">CUENTA</Link>
+                <Link href="/modif_Cuenta_user">CUENTA</Link>
             </div>
         </div>
         

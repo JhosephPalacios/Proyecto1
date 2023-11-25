@@ -1,4 +1,4 @@
-@import "./cambio_color.css";
+@import "./cambio_fondo.css";
 
 .selected2 {
     border-bottom: 5px var(--color-primario) solid;

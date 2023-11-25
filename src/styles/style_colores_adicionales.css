@@ -1,4 +1,4 @@
-@import "./cambio_color.css";
+@import "./cambio_fondo.css";
 
 .color_fondo_primario{
     background-color: var(--color-primario);

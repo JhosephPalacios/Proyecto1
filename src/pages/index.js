@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Layout from './components/Layout.js'
 import { useMiProvider } from './context/contexto'
-import library from '../json/library.json'
+import library from '../json/libros.json'
 import { useState, useEffect } from "react"
 
 const Index = () => {

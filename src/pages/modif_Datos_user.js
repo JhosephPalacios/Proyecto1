@@ -2,7 +2,7 @@ import Link from "next/link"
 import Head from 'next/head'
 import Image from 'next/image'
 import Layout from './components/Layout.js'
-import { useMiProvider } from './context/contexto'
+import { useMiProvider } from './context/contexto.js'
 
 const Perfil = () => {
 
@@ -13,7 +13,6 @@ const Perfil = () => {
     function registrarCambio(e){
         cuenta_modificada[e.target.name] = e.target.value
     }
-
     const escribirEnBD = async () => {
         try {
             const peticion = await fetch(`/api/personas/modificar2?id=${cuenta.id}`, {
@@ -24,8 +23,6 @@ const Perfil = () => {
                 },
             });
             setCuenta(cuenta_modificada)
-            document.querySelector(':root').style.setProperty('--color-primario', cuenta_modificada.color)
-            document.querySelector(':root').style.setProperty('--color-secundario', newShade(cuenta_modificada.color, 100))
             alert("Datos actualizados correctamente.")
             
         } catch (err) {
@@ -33,7 +30,6 @@ const Perfil = () => {
             alert("Error al modificar la persona.");
         }
     };
-
 
     return (
 
@@ -43,38 +39,35 @@ const Perfil = () => {
         <title>Perfil</title>
     </Head>
     <div id="tituloP">
-            <p>Hola, {cuenta.nombres}</p>
+            <p>Mi Perfil</p>
             <Image src="/divider.png" width={1088} height={1} alt="divider"></Image>
     </div>
     <div id="form_perfil">
-        <div id="barra_perfil">
-            <div id="barra_texto_notselected">
-                <Link href="/perfilDatos">DATOS PERSONALES</Link>
+        <div id="barra_perfil_usuario">
+            <div id="barra_texto_selected_usuario" className="selected">
+                <Link href="/modif_Datos_user">DATOS PERSONALES</Link>
             </div>
-            <div id="barra_texto_notselected">
-                <Link href="/perfilCuenta">CUENTA</Link>
-            </div>
-            <div id="barra_texto_selected" className="selected">
-                <Link href="/perfilPref">PREFERENCIAS</Link>
+            <div id="barra_texto_notselected_usuario">
+                <Link href="/modif_Cuenta_user">CUENTA</Link>
             </div>
         </div>
         
         <div class="grid grid-cols-2 gap-4">
             <div class="col-span-1">
                 <div id="imagen_perfil">
-                    <Image src={cuenta.foto} class="foto_perfil" width={279} height={253} alt="divider"></Image>
+                    <Image src={cuenta.foto} class="foto_perfil" width={279} height={253} alt="foto"/>
                 </div>
             </div>
             <div class="col-span-1">
-            <div id="cuadro_texto_idioma">
+            <div id="cuadro_texto_nombre">
                 <div class="borde_text_field">
                     <div class="state_layer">
                         <div class="content_perfil">
                             <div id="text_perfil">
-                                <p>Idioma</p>
+                                <p>Nombres</p>
                             </div>
-                            <div id="input_text_idioma">
-                                <input type='text' placeholder='Ingrese idioma' id="inputIdioma" name="idioma" defaultValue={cuenta.idioma} onBlur={registrarCambio}/>
+                            <div id="input_text_nombre">
+                                <input type='text' placeholder='Ingrese nombre' id="inputNombreUsu" name="nombres" defaultValue={cuenta.nombres} onBlur={registrarCambio}/>
                             </div>
                         </div>
                     </div>
@@ -84,48 +77,65 @@ const Perfil = () => {
                 </div> 
             </div>
             
-            <div id="cuadro_texto_prefijo">
+            <div id="cuadro_texto_tipo">
                 <div class="borde_text_field">
                     <div class="state_layer">
                         <div class="content_perfil">
                             <div id="text_perfil">
-                                <p>Prefijo</p>
+                                <p>Tipo de Documento</p>
                             </div>
-                            <div id="input_text_prefijo">
-                                <input type='text' placeholder='Ingrese prefijo' id="inputPrefijo" name="prefijo" defaultValue={cuenta.prefijo} onBlur={registrarCambio}/>
+                            <div id="input_text_tipo">
+                                <input type='text' placeholder='Ingrese documento' id="inputTipoUsu" name="tipo_documento" defaultValue={cuenta.tipo_documento} onBlur={registrarCambio}/>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="supporting-text">
                     <p></p>
-                </div>
+                </div> 
             </div>
-
-            <div id="cuadro_texto_color">
+            
+            <div id="cuadro_texto_ape">
                 <div class="borde_text_field">
                     <div class="state_layer">
                         <div class="content_perfil">
                             <div id="text_perfil">
-                                <p>Color</p>
+                                <p>Apellidos</p>
                             </div>
-                            <div id="input_text_color">
-                                <input type='color' id="inputColor" name="color" defaultValue={cuenta.color} onBlur={registrarCambio}/>
+                            <div id="input_text_ape">
+                                <input type='text' placeholder='Ingrese apellidos' id="inputApeUsu" name="apellidos" defaultValue={cuenta.apellidos} onBlur={registrarCambio}/>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="supporting-text">
                     <p></p>
-                </div>
+                </div> 
             </div>
-
+            
+            <div id="cuadro_texto_nro">
+                <div class="borde_text_field">
+                    <div class="state_layer">
+                        <div class="content_perfil">
+                            <div id="text_perfil">
+                                <p>Nro de documento</p>
+                            </div>
+                            <div id="input_text_nro">
+                                <input type='text' placeholder='Ingrese número' id="inputNroUsu" name="nro_documento" defaultValue={cuenta.nro_documento} onBlur={registrarCambio}/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="supporting-text">
+                    <p></p>
+                </div> 
+            </div>
 
             <button type="button" class="guardar" onClick={escribirEnBD}>Guardar</button>
 
             </div>
             {}
-
+        
         </div>
     </div>
 
@@ -135,22 +145,3 @@ const Perfil = () => {
     )
 }
 export default Perfil
-
-const newShade = (hexColor, magnitude) => {
-    hexColor = hexColor.replace(`#`, ``);
-    if (hexColor.length === 6) {
-        const decimalColor = parseInt(hexColor, 16);
-        let r = (decimalColor >> 16) + magnitude;
-        r > 255 && (r = 255);
-        r < 0 && (r = 0);
-        let g = (decimalColor & 0x0000ff) + magnitude;
-        g > 255 && (g = 255);
-        g < 0 && (g = 0);
-        let b = ((decimalColor >> 8) & 0x00ff) + magnitude;
-        b > 255 && (b = 255);
-        b < 0 && (b = 0);
-        return `#${(g | (b << 8) | (r << 16)).toString(16)}`;
-    } else {
-        return hexColor;
-    }
-};

@@ -1,4 +1,4 @@
-@import "./cambio_color.css";
+@import "./cambio_fondo.css";
 
 #bienvenida{
     color:black;
@@ -29,9 +29,9 @@
 }
 .contenedorSubtitulo{
     align-items: center;
-    width: 165px;
-    height: 28px;
-    padding-top: 11px;
+    width: 180px;
+    height: 50px;
+    padding-top: 3px;
     margin-left: 22px;
 }
 .subtitulo{

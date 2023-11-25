@@ -20,25 +20,26 @@ export default props => {
         titulo = 'Administracion de bibliotecas'
         segundo_link_mostrar = true
         tercer_link_titulo = 'Bibliotecas'
-        tercer_link_href = '/busqueda'
+        tercer_link_href = '/busqueda_books'
         foto_src = cuenta.foto
-        foto_href = '/perfilDatos'
+        foto_href = '/modif_Datos_admin'
     }
     else if (cuenta.tipo == 'user') {
         titulo = 'Sistema de bibliotecas'
         segundo_link_mostrar = true
         tercer_link_titulo = 'Prestamos'
-        tercer_link_href = '/busqueda'
+        tercer_link_href = '//busqueda_books'
         foto_src = cuenta.foto
-        foto_href = '/perfilDatosUsu'
+        foto_href = '/modif_Datos_user'
     }
     else { 
         titulo = 'Biblioteca'
         segundo_link_mostrar = false
         tercer_link_titulo = 'Buscar'
-        tercer_link_href = '/busqueda'
+        tercer_link_href = '/busqueda_books'
         foto_src = '/login.svg'
-        foto_href = '/login'
+        foto_href = '/login_general'
+        //te envia a "login_general" (login)
     }
 
     return (
@@ -81,7 +82,7 @@ export default props => {
             </main>
             
             <footer id="footer">
-                <p>Biblio v1.01-alpha</p>
+                <p>SAC v1.01-alpha</p>
             </footer>
         </div>
         </>
