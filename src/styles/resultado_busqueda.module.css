@@ -1,0 +1,78 @@
+.imagen_libros{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    width: 300px;
+    height: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-radius: 20px;
+    padding: 0;
+    margin-top: 20px;
+    
+}
+
+.texto_libro{
+    position: absolute;
+    height: 100px;
+    margin-top: -100px;
+    margin-left: 10px;
+}
+
+.boton_modificar{
+    background-color: #e8def8;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-weight: bold;
+    color: #1d192b;
+    margin-top: 10px;
+    margin-left: 100px;
+    font-size: 15px;
+    cursor: pointer;
+    border: none;
+
+}
+
+.value1_titulo{
+    background-color: rgba(139, 86, 199, 0);
+    color:#6048b6;
+    margin-left: -900px;
+
+}
+
+.ver_reservaciones{ /* LETRA INICIAL*/
+    font-weight: 500;
+    size: 16px;
+    line-height: 35px;
+    text-align: center;
+    padding-top: 0%;
+    color: #e7e5e7;
+    
+}
+
+.circulo{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--color-primario);
+    margin-top: 1px;
+    margin-left: 15px;
+}
+
+.mis_reservaciones{
+    background-color: #e8def8;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-weight: bold;
+    color: #1d192b;
+    margin-top: 10px;
+    font-size: 12px;
+    cursor: pointer;
+    border: none;
+    width: 150px;
+    height: 30px;
+    margin-right: 20px;
+    margin-left: 75%;
+}

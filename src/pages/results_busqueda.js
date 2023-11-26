@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import Modal from "./modal.js"
 import { useSearchParams } from 'next/navigation';
 import Resultados_lista from "./resultados_lista.js"
+import styles from '../styles/resultado_busqueda.module.css'
 
 
 const Resultados = (parametros) => {
@@ -23,7 +24,7 @@ const Resultados = (parametros) => {
 
             <div class="flex justify-between">
                 <h1 class="text-2xl font-semibold mb-4">Búsqueda</h1>
-                <button type="button" class="bg-purple-primary text-purple-bg px-4 py-2 hover:bg-blue-600 border rounded-full color_fondo_primario color_letra_blanco"
+                <button type="button" class={styles.mis_reservaciones}
                 onClick={()=>{router.push('/busqueda_books')}}>Volver a buscar</button>
             </div>
 
@@ -31,7 +32,7 @@ const Resultados = (parametros) => {
 
             <div class="flex justify-between">
                 <h1 class="text-1xl font-semibold mb-4">Resultados de la busqueda</h1>
-                <button type="button" class="bg-purple-bg text-purple-primary px-4 py-2 hover:bg-blue-600 border rounded-full color_letra_primario color_fondo_secundario"
+                <button type="button" class={styles.mis_reservaciones}
                 onClick={()=>{router.push('/pagina_principal')}}>Ver mis reservas</button>
             </div>
             

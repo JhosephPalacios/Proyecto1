@@ -8,6 +8,8 @@ import { useEffect, useState } from "react"; // Importa useEffect y useState
 import { useRouter } from "next/router";
 import Modal from "./modal.js"
 import { useSearchParams } from 'next/navigation';
+import styles from '../styles/resultado_busqueda.module.css'
+
 
 
 const Resultados_lista = () => {
@@ -143,18 +145,18 @@ const Resultados_lista = () => {
                         .join('');
                     return (
 
-                        <div class="w-80 h-96 border-2 rounded-lg color_borde_primario" key={value[1].id}>
-                            <div class="cursor-pointer" onClick={() => {
+                        <div class={styles.cursor_pointer} key={value[1].id}>
+                            <div class="stylescursor_pointer" onClick={() => {
                                 router.push('/libro/' + value[1].id)
                             }}>
-                                <div class="h-18 flex justify-between items-center">
-                                    <div class="w-10 h-10 inline-flex m-4 bg-purple-primary text-purple-bg justify-center items-center text-center rounded-full color_letra_blanco color_fondo_primario">{tituloIniciales}</div>
-                                    <div class="w-60 h-18 line-clamp-3 text-purple-primary text-left items-center align-middle color_letra_primario">{value[1].titulo}</div>
+                                <div class={styles.ver_reservaciones}>
+                                    <div class={styles.circulo}>{tituloIniciales}</div>
+                                    <div class={styles.value1_titulo}>{value[1].titulo}</div>
                                 </div>
-                                <div class="flex bg-purple-bg mx-auto justify-center items-center color_fondo_secundario">
-                                    <Image src={value[1].imagen} height={150} width={150} alt="libro_imagen" class="h-36 w-auto" ></Image>
+                                <div class={styles.imagen_libros}>
+                                    <Image src={value[1].imagen} height={150} width={150} alt="libro_libro" class="h-36 w-auto" ></Image>
                                 </div>
-                                <div class="py-2 px-4 text-purple-primary color_letra_primario">
+                                <div class={styles.texto_libro}>
                                     <div class="font-bold">ISBN: {value[1].isbn}</div>
                                     <div>Autor: {value[1].autor}</div>
                                     <div>Editorial: {value[1].editorial}</div>
@@ -164,7 +166,7 @@ const Resultados_lista = () => {
                                 <div class="h-16 flex justify-center items-center">
                                     {cuenta.tipo == 'admin' && (
                                         <button type="button"
-                                            class="bg-purple-primary text-purple-bg border px-4 py-2 hover:bg-blue-600 rounded-full color_fondo_primario color_letra_blanco"
+                                            class={styles.boton_modificar}
                                             onClick={() => {
                                                 router.push('/modificar/' + value[1].id)
                                             }}
@@ -173,7 +175,7 @@ const Resultados_lista = () => {
                                     {cuenta.tipo == 'user' && (
                                         value[1].disponible && (
                                             <button type="button" disabled={!value[1].disponible}
-                                                class="bg-purple-primary text-purple-bg border px-4 py-2 hover:bg-blue-600 rounded-full color_fondo_primario color_letra_blanco"
+                                            class={styles.boton_modificar}
                                                 onClick={() => {
                                                     setlibroselec(value[1])
                                                     openModal1()

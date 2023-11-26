@@ -14,7 +14,7 @@
     width: 1084px;
     height: 264px;
     background: var(--color-secundario);
-    margin-bottom: 11px;
+    margin-bottom: 30px;
     
 }
 .libro{
@@ -29,8 +29,6 @@
     position: absolute;
     left: 15%;
     
-    
-
 }
 
 .contenedorSubtitulo{
