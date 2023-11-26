@@ -189,13 +189,16 @@
   #cuadro_texto_idioma{
     display: flex;
     width: 291px;
-    height: 100px;
     flex-direction: column;
     align-items: flex-start;
     border-radius: 4px 4px 0px 0px;
-    margin-left: 45%;
-    margin-right: auto;
-    margin-top: -250px;
+    margin-left: 20%;
+    margin-top: -5px;
+    position: absolute;
+    right: 50px;
+    top: -90px;
+    left: -45%;
+    
   }
 
   #cuadro_texto_prefijo{
@@ -205,9 +208,12 @@
     flex-direction: column;
     align-items: flex-start;
     border-radius: 4px 4px 0px 0px;
-    margin-left: 45%;
-    margin-right: auto;
-    margin-top: 8px;
+    margin-left: 20%;
+    margin-top: -5px;
+    position: absolute;
+    right: 500px;
+    top: -10px;
+    left: -45%;
   }
 
   #cuadro_texto_color{
@@ -217,9 +223,13 @@
     flex-direction: column;
     align-items: flex-start;
     border-radius: 4px 4px 0px 0px;
-    margin-left: 45%;
+    margin-left: 20%;
     margin-right: auto;
-    margin-top: 8px;
+    margin-top: -20px;
+    position: relative;
+    right: 50px;
+    top: 80px;
+    left: -45%;
   }
 
 #text_perfil{
@@ -249,6 +259,7 @@
   justify-content: center;
   align-items: flex-start;
   flex: 1 0 0;
+  margin-left: -3%;
 }
 
 
@@ -409,7 +420,7 @@
   padding-left: 100px;
   padding-right: 100px;
   margin-top: 0%;
-  margin-left: 46%;
+  margin-left: -80%;
 }
 
 .guardar:hover {
