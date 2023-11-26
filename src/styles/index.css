@@ -1,9 +1,9 @@
 @import "./cambio_fondo.css";
 
 #cont2-masrecientes{
-    position: absolute;
-    right: 3%;
-    bottom: -50px;
+  position: absolute;
+  right: 52%;
+  bottom: 900px;
 }
 
 #retro {
@@ -53,12 +53,14 @@
 
   #total1{
     font-weight: bold;
+    margin-top: 150px;
   }
 
 #cont2-1-masrecientes{
     position: absolute;
-    left: 2.5%;
-    top: 20px;
+    left: 8%;
+    top: 275px;
+
 }
 
 
@@ -112,7 +114,7 @@
 
 #cont-result{
   position: relative;
-
+  
 }
 
   #cont-resultados{
@@ -121,3 +123,9 @@
     top: 20px;
     width: 130px;
   }
+
+
+.Ultimareservacuadro{
+  top: 140px;
+
+}

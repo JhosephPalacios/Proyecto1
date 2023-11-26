@@ -290,10 +290,66 @@ const Index = () => {
                     <Image src="/divider.png" width={1088} height={1} alt="divider"></Image>
                 </div>
                 <br></br>
-                {cuenta.tipo == 'user' && (
+                {cuenta.tipo != 'guest' && ( //Guest no ve nada en index
+                    <div>
+
+                        <div class="rectangulo">
+                            <div class="contenedorSubtitulo">
+                                <p class="subtitulo">Últimas reservas</p>
+                            </div>
+                            <br></br>
+                            <div class="flex flex-wrap" id="Ultimareservacuadro">
+                                {Object.entries(datosMasRecientes).map((value, index) => { 
+                                    return (
+                                        <div>
+                                            <Link href="/libro/[id]" as={"/libro/"+ value[1].reservado.id}>
+                                                <div class="libro">
+                                                    <div class="grid grid-cols-6 col-span-1">
+                                                        <div class="col-start-1 col-span-1">
+                                                            <div class="circulo">
+                                                                <p className="inicial">{obtenerInicialesEnMayuscula(value[1].reservado.titulo)}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-start-2 col-end-5">
+                                                            <div className="contenedorTituloLibro">
+                                                                <div class="line-clamp-2">
+                                                                    <p class="tituloLibro"><b>"{value[1].reservado.titulo}"</b></p>
+                                                                </div>
+                                                            </div>
+                                                            <div className="contenedorInfoLibro">
+                                                                <div class="line-clamp-1">
+                                                                    <p className="infoLibro">Reservado el: {new Date(value[1].fecha_inicio).toISOString().split('T')[0]}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-start-6 col-span-1">
+                                                            <div class="imagenLibro">
+                                                                <Image src={value[1].reservado.imagen} width={80} height={101} alt="libro"></Image>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </Link>
+                                        </div>
+                                    )
+                                })
+                                }
+                            </div>
+                            <div id="cont-masrecientes" class="relative">
+                                <div id="cont2-masrecientes">
+                                    <button onClick={retrocederLosMasRecientes} disabled={pageMasRecientes === 1} id="retro" class="text-white border border-white rounded-md px-4 py-2 text-base cursor-pointer transition duration-300 ease-in-out hover:bg-white hover:text-black">Anterior</button>
+                                    <button onClick={avanzarLosMasRecientes} disabled={pageMasRecientes === totalPages} id="avanzar">Siguiente</button>
+                                </div>
+                                <div id="cont2-1-masrecientes">
+                                    <p id="total1">Total {pageMasRecientes} de {totalPages}</p>
+                                </div>
+
+                            </div>
+                        </div>
+                        {cuenta.tipo == 'user' && (
                             <div class="rectangulo">
                                 <div class="contenedorSubtitulo">
-                                    <h2 class="subtitulo">Próximos a vencer</h2>
+                                    <p class="subtitulo">Próximos a vencer</p>
                                 </div>
                                 <br></br>
                                 <div class="flex flex-wrap">
@@ -347,7 +403,7 @@ const Index = () => {
                         {cuenta.tipo == 'admin' && (
                             <div class="rectangulo">
                                 <div class="contenedorSubtitulo">
-                                    <h2 class="subtitulo">Los más pedidos</h2>
+                                    <p class="subtitulo">Los más pedidos</p>
                                 </div>
                                 <br></br>
                                 <div class="flex flex-wrap">
@@ -396,8 +452,10 @@ const Index = () => {
                                             <p id="total1">Total {pageMasPedidos} de {totalPages1}</p>
                                         </div>
                                 </div>
-                            </div>)
-                        }
+                            </div>)}
+
+                    </div>
+                )}
             </>
         }
         ></Layout>

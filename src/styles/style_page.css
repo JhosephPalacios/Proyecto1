@@ -15,24 +15,30 @@
     height: 264px;
     background: var(--color-secundario);
     margin-bottom: 11px;
+    
 }
 .libro{
-    width: 470px;
-    height: 101px;
+    display: flex;
+    justify-content:left;
+    padding: 30px;
     border-radius: 12px;
-    border-color: rgb(165, 165, 165);
-    border-width: 1px;
-    border-style: solid;
-    background: #ffffff;
-    margin-left: 22px;
-    margin-bottom: 1%;
+    border: 1px solid  #6b5e79;
+    background:  rgb(247, 236, 252);
+    width: 450px;
+    height: 80px;
+    position: absolute;
+    left: 15%;
+    
+    
+
 }
+
 .contenedorSubtitulo{
     align-items: center;
     width: 180px;
     height: 50px;
     padding-top: 3px;
-    margin-left: 22px;
+    margin-left: 30px;
 }
 .subtitulo{
     color:black;
@@ -47,7 +53,7 @@
     justify-content: center;
     align-items: center;
     background-color: var(--color-primario);
-    margin-top: 37%;
+    margin-top: -5%;
     margin-left: 20%;
 }
 .inicial{
@@ -60,18 +66,21 @@
 }
 
 .imagenLibro {
-    width: 80px; /* Ancho del contenedor */
-    height: 101px; /* Alto del contenedor */
+    width: 81px; /* Ancho del contenedor */
+    height: 140px; /* Alto del contenedor */
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
     overflow: hidden; /* Esto oculta cualquier parte de la imagen que se salga del contenedor */
     justify-content: flex-end; /* Alinea la imagen a la derecha */
+    margin-top: -51%;
+    margin-left: 132%;
 
 }
   
 .imagenLibro img {
     width: 100%; /* La imagen ocupa todo el ancho del contenedor */
     height: 100%; /* El alto se ajustará automáticamente según la relación de aspecto original */
+    
 }
 
 .contenedorTituloLibro{
@@ -86,17 +95,18 @@
 }
 .contenedorInfoLibro{
     width: 302px;
-    height: 20px;
+    height: 29px;
 }
 .infoLibro{
-    line-height: 20px;
+    line-height: 1px;
     font-size: 14px;
+    margin-top: -10px;
     font-family: 'Times New Roman', Times, serif;
+
 }
 
 
 .verTodo{
     margin-left: 90%;
-    margin-top: 5%;
+    margin-top: 25%;
 }
-  
