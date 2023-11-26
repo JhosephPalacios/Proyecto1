@@ -49,7 +49,7 @@ const ModificarLibro = () => {
                 },
             });
 
-            alert("todo bien")
+            alert("DATOS CAMBIADOS!")
             
         } catch (err) {
             console.error(err);
