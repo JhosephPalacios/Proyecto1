@@ -67,7 +67,7 @@ export default props => {
 
             <nav id="nav">
                 <ul>
-                    <li><Link href="/">Inicio</Link></li>
+                    <li><Link href="/pagina_principal">Inicio</Link></li>
                     {segundo_link_mostrar && (
                         <li><Link href={foto_href}>Perfil</Link></li>
                     )}

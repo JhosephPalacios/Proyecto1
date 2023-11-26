@@ -56,7 +56,7 @@ const detalleLibro = () => {
             )
             const data = await peticion.json()
             alert("libro eliminado")
-            router.push('/busqueda')
+            router.push('/busqueda_books')
 
         } catch (err) {
             console.log(err)

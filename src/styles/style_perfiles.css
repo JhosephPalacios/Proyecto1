@@ -125,9 +125,9 @@
     flex-direction: column;
     align-items: flex-start;
     border-radius: 4px 4px 0px 0px;
-    margin-left: 0%;
+    margin-left: 45%;
     margin-right: auto;
-    margin-top: 35px;
+    margin-top: -250px;
   }
 
   #cuadro_texto_tipo{
@@ -136,9 +136,9 @@
     flex-direction: column;
     align-items: flex-start;
     border-radius: 4px 4px 0px 0px;
-    margin-left: 0%;
+    margin-left: 45%;
     margin-right: auto;
-    margin-top: 8px;
+    margin-top: -5px;
   }
 
   #cuadro_texto_ape{
@@ -147,9 +147,9 @@
     flex-direction: column;
     align-items: flex-start;
     border-radius: 4px 4px 0px 0px;
-    margin-left: 0%;
+    margin-left: 45%;
     margin-right: auto;
-    margin-top: 8px;
+    margin-top: -5px;
   }
 
   #cuadro_texto_nro{
@@ -158,9 +158,9 @@
     flex-direction: column;
     align-items: flex-start;
     border-radius: 4px 4px 0px 0px;
-    margin-left: 0%;
+    margin-left: 45%;
     margin-right: auto;
-    margin-top: 8px;
+    margin-top: -5px;
   }
 
 
@@ -170,9 +170,9 @@
     flex-direction: column;
     align-items: flex-start;
     border-radius: 4px 4px 0px 0px;
-    margin-left: 0%;
+    margin-left: 45%;
     margin-right: auto;
-    margin-top: 35px;
+    margin-top: -250px;
   }
 
   #cuadro_texto_contra{
@@ -181,7 +181,7 @@
     flex-direction: column;
     align-items: flex-start;
     border-radius: 4px 4px 0px 0px;
-    margin-left: 0%;
+    margin-left: 45%;
     margin-right: auto;
     margin-top: 8px;
   }
@@ -193,9 +193,9 @@
     flex-direction: column;
     align-items: flex-start;
     border-radius: 4px 4px 0px 0px;
-    margin-left: 0%;
+    margin-left: 45%;
     margin-right: auto;
-    margin-top: 35px;
+    margin-top: -250px;
   }
 
   #cuadro_texto_prefijo{
@@ -205,7 +205,7 @@
     flex-direction: column;
     align-items: flex-start;
     border-radius: 4px 4px 0px 0px;
-    margin-left: 0%;
+    margin-left: 45%;
     margin-right: auto;
     margin-top: 8px;
   }
@@ -217,7 +217,7 @@
     flex-direction: column;
     align-items: flex-start;
     border-radius: 4px 4px 0px 0px;
-    margin-left: 0%;
+    margin-left: 45%;
     margin-right: auto;
     margin-top: 8px;
   }
@@ -230,16 +230,15 @@
   position: absolute;
   background: white;
   color: var(--color-primario);
-  /* M3/body/small */
   font-family: "Roboto", sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
-  line-height: 16px; /* 133.333% */
+  line-height: 16px; 
   width: auto;
   height: 20px;
-  left: -3%; /* Ajustar la posición horizontal según tus necesidades */
-  top: -48%; /* Ajustar la posición vertical según tus necesidades */
+  left: -3%; 
+  top: -48%; 
 }
 
 .content_perfil{
@@ -251,6 +250,7 @@
   align-items: flex-start;
   flex: 1 0 0;
 }
+
 
 #input_text_nombre{
   display: flex;
@@ -409,7 +409,7 @@
   padding-left: 100px;
   padding-right: 100px;
   margin-top: 0%;
-  margin-left: 18px;
+  margin-left: 46%;
 }
 
 .guardar:hover {

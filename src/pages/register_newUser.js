@@ -41,7 +41,7 @@ const registroUsuario = () => {
             )
 
             const data = await peticion.json()
-            router.push('/login_general')
+            router.push('/')
 
         } catch (err) {
             console.log(err)

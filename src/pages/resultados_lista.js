@@ -152,7 +152,7 @@ const Resultados_lista = () => {
                                     <div class="w-60 h-18 line-clamp-3 text-purple-primary text-left items-center align-middle color_letra_primario">{value[1].titulo}</div>
                                 </div>
                                 <div class="flex bg-purple-bg mx-auto justify-center items-center color_fondo_secundario">
-                                    <Image src={value[1].imagen} height={10000} width={10000} alt="libro_imagen" class="h-36 w-auto" ></Image>
+                                    <Image src={value[1].imagen} height={150} width={150} alt="libro_imagen" class="h-36 w-auto" ></Image>
                                 </div>
                                 <div class="py-2 px-4 text-purple-primary color_letra_primario">
                                     <div class="font-bold">ISBN: {value[1].isbn}</div>
