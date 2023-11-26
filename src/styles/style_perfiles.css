@@ -189,6 +189,7 @@
   #cuadro_texto_idioma{
     display: flex;
     width: 291px;
+    height: 100px;
     flex-direction: column;
     align-items: flex-start;
     border-radius: 4px 4px 0px 0px;
@@ -200,6 +201,7 @@
   #cuadro_texto_prefijo{
     display: flex;
     width: 291px;
+    height: 100px;
     flex-direction: column;
     align-items: flex-start;
     border-radius: 4px 4px 0px 0px;
@@ -211,6 +213,7 @@
   #cuadro_texto_color{
     display: flex;
     width: 291px;
+    height: 100px;
     flex-direction: column;
     align-items: flex-start;
     border-radius: 4px 4px 0px 0px;

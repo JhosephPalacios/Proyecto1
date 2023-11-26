@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Layout from './components/Layout.js'
 import {useMiProvider} from './context/contexto.js'
 import {useState} from 'react'
+import styles from '../styles/estilo_agregar_lib.module.css'
 
 const Perfil = () => {
     const [cuenta, setCuenta] = useMiProvider()
@@ -66,14 +67,14 @@ const Perfil = () => {
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="col-span-1">
+                <div>
+                    <div class={styles.UbicacionImagen}>
                         <div id="imagen_perfil2">
                             <Image src="/Rectangle 5.png" width={279} height={253} ></Image>
                         </div>
                     </div>
                     <form action="registrarLibro" onSubmit={hacernada}>
-                        <div class="col-span-1">
+                        <div class={styles.Ubicacion}>
                             <div id="cuadro_texto_idioma">
                                 <div class="borde_text_field">
                                     <div class="state_layer">
@@ -133,7 +134,7 @@ const Perfil = () => {
                                     <div class="state_layer">
                                         <div class="content_perfil">
                                             <div id="text_perfil">
-                                                <p>Tipo</p>
+                                                <p>Serie, tipo</p>
                                             </div>
                                             <div id="input_text_color">
                                                 <input type='text' id="inputTipo" name="tipo" onChange={registrarCambio}/>
@@ -145,60 +146,6 @@ const Perfil = () => {
                                     <p></p>
                                 </div>
                             </div>
-
-                            <div id="cuadro_texto_color">
-                                <div class="borde_text_field">
-                                    <div class="state_layer">
-                                        <div class="content_perfil">
-                                            <div id="text_perfil">
-                                                <p>Topicos</p>
-                                            </div>
-                                            <div id="input_text_color">
-                                                <input type='text' id="inputSerie" name="topicos" onChange={registrarCambio}/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="supporting-text">
-                                    <p></p>
-                                </div>
-                            </div>
-                            <div id="cuadro_texto_color">
-                                <div class="borde_text_field">
-                                    <div class="state_layer">
-                                        <div class="content_perfil">
-                                            <div id="text_perfil">
-                                                <p>Descripcion</p>
-                                            </div>
-                                            <div id="input_text_color">
-                                                <input type='text' id="inputDescripcion" name="descripcion" onChange={registrarCambio}/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="supporting-text">
-                                    <p></p>
-                                </div>
-                            </div>
-
-                            <div id="cuadro_texto_color">
-                                <div class="borde_text_field">
-                                    <div class="state_layer">
-                                        <div class="content_perfil">
-                                            <div id="text_perfil">
-                                                <p>Editorial</p>
-                                            </div>
-                                            <div id="input_text_color">
-                                                <input type='text' id="inputtopico" name="editorial" onChange={registrarCambio}/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="supporting-text">
-                                    <p></p>
-                                </div>
-                            </div>
-
 
                             <button id="GuardarLibro" class="guardar" onClick={escribirJSON}>Guardar</button>
 

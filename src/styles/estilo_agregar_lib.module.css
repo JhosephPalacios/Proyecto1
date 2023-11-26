@@ -1,0 +1,13 @@
+.Ubicacion {
+    position: absolute;
+    right: 10%;
+    left: 50%;
+    top: 30%;
+}
+
+.UbicacionImagen {
+    position: absolute;
+    right: 10%;
+    left: 17%;
+    top: 15%;
+}
